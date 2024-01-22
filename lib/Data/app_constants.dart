@@ -16,6 +16,8 @@ const kShadowColor = Color.fromRGBO(0, 0, 0, 0.25);
 const kButtonGreyColor = Color(0xFF5B5B5E);
 const kIconColor = Color(0xFFD0D2D1);
 const kLightGreyColor = Color.fromARGB(135, 253, 254, 255);
+const klightGreenColor = Color.fromARGB(255, 133, 184, 116);
+const kturkuazColor = Color(0xFFE3F3F0);
 
 ThemeData appTheme = ThemeData(
   scaffoldBackgroundColor: kWhiteColor,
