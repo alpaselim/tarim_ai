@@ -32,7 +32,6 @@ ThemeData appTheme = ThemeData(
     disabledBorder: customOutlineInputBorder(),
     errorBorder: customErrorOutlineInputBorder(),
     focusedErrorBorder: customErrorOutlineInputBorder(),
-    //https://github.com/flutter/flutter/issues/99063
     errorStyle: const TextStyle(height: 0),
   ),
 );
