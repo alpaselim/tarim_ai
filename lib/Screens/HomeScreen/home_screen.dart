@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/auth_service.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/custom_image_button.dart';
+import 'package:tarim_ai/Utils/CustomWidgets/small_weather_app.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,11 +12,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController nameController = TextEditingController();
-
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,25 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       drawer: const Drawer(),
-      body: SafeArea(
-        child: Container(
-          color: kGreenColor,
-          height: 100,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
+      body: Column(
+        children: [
+          Container(
+            color: kWhiteColor,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
                   fieldSelectionButton(),
-                  const SizedBox(
-                    width: 10,
-                  ),
                   ImageButton(
                     backgroundColor: klightGreenColor,
                     onPressed: () {},
@@ -59,9 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
+          const SmallWeatherApp(),
+        ],
       ),
     );
   }

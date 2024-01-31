@@ -45,6 +45,9 @@ dependencies:
   cloud_firestore: ^4.13.6
   #veri depolama işlemleri için
   get_storage: ^2.1.1
+  velocity_x: ^4.1.2
+  geolocator: ^10.1.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +74,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/icons/
+    - assets/weather/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -84,7 +89,16 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: poppins
+      fonts:
+        - asset: assets/fonts/poppin.ttf
+    - family: poppins_bold
+      fonts:
+        - asset: assets/fonts/poppin_bold.ttf
+    - family: poppins_light
+      fonts:
+        - asset: assets/fonts/poppin_light.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
