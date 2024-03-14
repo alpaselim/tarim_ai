@@ -23,22 +23,6 @@ class WeatherApp extends StatelessWidget {
           title: date.text.color(theme.primaryColor).make(),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          actions: [
-            Obx(
-              () => IconButton(
-                  onPressed: () {
-                    controller.changeTheme();
-                  },
-                  icon: Icon(
-                      controller.isDark.value
-                          ? Icons.light_mode
-                          : Icons.dark_mode,
-                      color: theme.iconTheme.color)),
-            ),
-            IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.more_vert, color: theme.iconTheme.color))
-          ],
         ),
         body: Obx(
           () => controller.isloaded.value == true
@@ -104,21 +88,23 @@ class WeatherApp extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   TextButton.icon(
-                                      onPressed: null,
-                                      icon: Icon(Icons.expand_less_rounded,
-                                          color: theme.iconTheme.color),
-                                      label: "${data.main!.tempMax}$degree"
-                                          .text
-                                          .color(theme.iconTheme.color)
-                                          .make()),
+                                    onPressed: null,
+                                    icon: Icon(Icons.expand_less_rounded,
+                                        color: theme.iconTheme.color),
+                                    label: "${data.main!.tempMax}$degree"
+                                        .text
+                                        .color(theme.iconTheme.color)
+                                        .make(),
+                                  ),
                                   TextButton.icon(
-                                      onPressed: null,
-                                      icon: Icon(Icons.expand_more_rounded,
-                                          color: theme.iconTheme.color),
-                                      label: "${data.main!.tempMin}$degree"
-                                          .text
-                                          .color(theme.iconTheme.color)
-                                          .make())
+                                    onPressed: null,
+                                    icon: Icon(Icons.expand_more_rounded,
+                                        color: theme.iconTheme.color),
+                                    label: "${data.main!.tempMin}$degree"
+                                        .text
+                                        .color(theme.iconTheme.color)
+                                        .make(),
+                                  )
                                 ],
                               ),
                               10.heightBox,

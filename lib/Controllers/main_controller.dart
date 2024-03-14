@@ -1,29 +1,49 @@
-import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Services/api_service.dart';
 
 class MainController extends GetxController {
   @override
   void onInit() async {
-    await getUserLocation();
-    currentWeatherData = getCurrentWeather(latitude.value, longitude.value);
-    hourlyWeatherData = getHourlyWeather(latitude.value, longitude.value);
+    super.onInit(); // Önerilen: super.onInit()'i en başa alın.
 
-    super.onInit();
+    final FieldController fieldController = Get.find<FieldController>();
+
+    // FieldController'dan soilData'nın var olup olmadığını kontrol et
+    if (fieldController.soilData.value != null) {
+      // soilData varsa ve içinde latitude & longitude bilgisi varsa kullan
+      var soilData = fieldController.soilData.value!;
+      if (soilData.latitude != null && soilData.longitude != null) {
+        // Direkt olarak FieldController'dan alınan değerleri kullan
+        currentWeatherData =
+            getCurrentWeather(soilData.latitude!, soilData.longitude!);
+        hourlyWeatherData =
+            getHourlyWeather(soilData.latitude!, soilData.longitude!);
+      }
+    } else {
+      // Eğer soilData yoksa veya içinde konum bilgisi yoksa, kullanıcının mevcut konumunu kullan
+      await getUserLocation();
+      currentWeatherData = getCurrentWeather(latitude.value, longitude.value);
+      hourlyWeatherData = getHourlyWeather(latitude.value, longitude.value);
+    }
   }
 
-  var isDark = false.obs;
   dynamic currentWeatherData;
   dynamic hourlyWeatherData;
   var latitude = 0.0.obs;
   var longitude = 0.0.obs;
-
   var isloaded = false.obs;
 
-  changeTheme() {
-    isDark.value = !isDark.value;
-    Get.changeThemeMode(isDark.value ? ThemeMode.dark : ThemeMode.light);
+  void updateWeatherData(double lat, double lon) async {
+    // Hava durumu API'sini kullanarak verileri al
+    currentWeatherData = getCurrentWeather(lat, lon);
+    hourlyWeatherData = getHourlyWeather(lat, lon);
+    // UI'da göstermek üzere değerleri güncelle
+    isloaded.value = false; // Yükleniyor durumuna getir
+    await Future.delayed(
+        const Duration(milliseconds: 100)); // API'den yanıt bekleniyor
+    isloaded.value = true; // Yükleme tamamlandı, UI'ı güncelle
   }
 
   getUserLocation() async {

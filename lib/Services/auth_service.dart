@@ -45,6 +45,7 @@ class AuthService {
     await _auth.signOut();
     // ignore: use_build_context_synchronously
     Navigator.pushNamedAndRemoveUntil(
+      // ignore: use_build_context_synchronously
       context,
       loginScreenPath,
       (route) => false,

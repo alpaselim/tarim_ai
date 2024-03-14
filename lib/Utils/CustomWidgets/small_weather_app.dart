@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:tarim_ai/Controllers/main_controller.dart';
 import 'package:tarim_ai/Data/app_constant_env.dart';
-import 'package:tarim_ai/Data/images.dart';
+import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Data/models/current_weather_model.dart';
+import 'package:tarim_ai/Data/models/hourly_weather_model.dart';
 import 'package:tarim_ai/Data/strings.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class SmallWeatherApp extends StatelessWidget {
+class SmallWeatherApp extends StatefulWidget {
   const SmallWeatherApp({super.key});
 
   @override
+  State<SmallWeatherApp> createState() => _SmallWeatherAppState();
+}
+
+class _SmallWeatherAppState extends State<SmallWeatherApp> {
+  @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     var controller = Get.put(MainController());
 
     return GestureDetector(
@@ -46,72 +52,106 @@ class SmallWeatherApp extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              "${data.name}"
-                                  .text
-                                  .uppercase
-                                  .fontFamily("poppins_bold")
-                                  .size(10)
-                                  .letterSpacing(1)
-                                  .color(theme.primaryColor)
-                                  .make(),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
+                                  "${data.name}"
+                                      .text
+                                      .size(20)
+                                      .letterSpacing(1)
+                                      .color(kWhiteColor)
+                                      .make(),
                                   Image.asset(
                                     "assets/weather/${data.weather![0].icon}.png",
-                                    width: 40,
-                                    height: 40,
+                                    width: 25,
+                                    height: 25,
                                   ),
-                                  RichText(
-                                      text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                          text: "${data.main!.temp}$degree",
-                                          style: TextStyle(
-                                            color: theme.primaryColor,
-                                            fontSize: 20,
-                                            fontFamily: "poppins",
-                                          )),
-                                      TextSpan(
-                                          text: " ${data.weather![0].main}",
-                                          style: TextStyle(
-                                            color: theme.primaryColor,
-                                            letterSpacing: 1,
-                                            fontSize: 10,
-                                            fontFamily: "poppins",
-                                          )),
-                                    ],
-                                  )),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: List.generate(3, (index) {
-                                  var iconsList = [clouds, humidity, windspeed];
-                                  var values = [
-                                    "${data.clouds!.all}",
-                                    "${data.main!.humidity}",
-                                    "${data.wind!.speed} km/h"
-                                  ];
-                                  return Column(
-                                    children: [
-                                      Image.asset(
-                                        iconsList[index],
-                                        width: 60,
-                                        height: 60,
-                                      )
-                                          .box
-                                          .gray200
-                                          .padding(const EdgeInsets.all(8))
-                                          .roundedSM
-                                          .make(),
-                                      10.heightBox,
-                                      values[index].text.gray400.make(),
-                                    ],
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("${data.main!.temp}$degree",
+                                      style: const TextStyle(
+                                        color: kWhiteColor,
+                                        fontSize: 20,
+                                        fontFamily: "poppins",
+                                      )),
+                                  Text(" ${data.weather![0].main}",
+                                      style: const TextStyle(
+                                        color: kWhiteColor,
+                                        letterSpacing: 1,
+                                        fontSize: 20,
+                                        fontFamily: "poppins",
+                                      )),
+                                ],
+                              ),
+                              FutureBuilder(
+                                future: controller.hourlyWeatherData,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot snapshot) {
+                                  if (snapshot.hasData) {
+                                    HourlyWeatherData hourlyData =
+                                        snapshot.data;
+
+                                    return SizedBox(
+                                      height: 95,
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        shrinkWrap: true,
+                                        itemCount: hourlyData.list!.length > 6
+                                            ? 6
+                                            : hourlyData.list!.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          var dateTime = DateTime
+                                              .fromMillisecondsSinceEpoch(
+                                                  hourlyData.list![index].dt!
+                                                          .toInt() *
+                                                      1000);
+                                          var period = DateFormat('a').format(
+                                              dateTime); // AM veya PM'yi alır
+                                          var hour = DateFormat('h')
+                                              .format(dateTime); // Saati alır
+                                          var time =
+                                              "$hour$period"; // 12AM veya 12PM şeklinde birleştirir
+
+                                          return Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  time, // Saat metni
+                                                  style: const TextStyle(
+                                                      fontSize: 15),
+                                                ),
+                                                const SizedBox(height: 2),
+                                                Image.asset(
+                                                  "assets/weather/${hourlyData.list![index].weather![0].icon}.png",
+                                                  width: 45,
+                                                ),
+                                                const SizedBox(height: 2),
+                                                Text(
+                                                  "${hourlyData.list![index].main!.temp}°",
+                                                  style: const TextStyle(
+                                                      fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  }
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
                                   );
-                                }),
+                                },
                               ),
                             ],
                           ),

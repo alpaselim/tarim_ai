@@ -37,8 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.6
   # Internet api işlemleri
-  http: ^1.1.2
-
+  http: ^1.2.1
   #firebase
   firebase_core: ^2.24.1
   firebase_auth: ^4.15.3
@@ -48,6 +47,15 @@ dependencies:
   velocity_x: ^4.1.2
   geolocator: ^10.1.0
   intl: ^0.18.1
+  #harita uzerinden adres secme
+  google_maps_flutter: ^2.6.0
+  geocoding: ^2.2.0
+  baseflow_plugin_template: ^2.1.2
+  shared_preferences: ^2.2.2
+  
+  
+  
+
 
 dev_dependencies:
   flutter_test:
@@ -99,6 +107,10 @@ flutter:
     - family: poppins_light
       fonts:
         - asset: assets/fonts/poppin_light.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 700
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

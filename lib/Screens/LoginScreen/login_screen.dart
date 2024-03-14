@@ -164,6 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
             if (user != null) {
               // ignore: use_build_context_synchronously
               Navigator.pushNamed(
+                // ignore: use_build_context_synchronously
                 context,
                 homeScreenPath,
               );
