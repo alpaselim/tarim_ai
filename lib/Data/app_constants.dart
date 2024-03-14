@@ -18,9 +18,19 @@ const kIconColor = Color(0xFFD0D2D1);
 const kLightGreyColor = Color.fromARGB(135, 253, 254, 255);
 const klightGreenColor = Color.fromARGB(255, 133, 184, 116);
 const kturkuazColor = Color(0xFFE3F3F0);
+const ksoftGreenColor = Color.fromARGB(255, 237, 241, 232);
 
 ThemeData appTheme = ThemeData(
   scaffoldBackgroundColor: kWhiteColor,
+  appBarTheme: const AppBarTheme(
+    iconTheme: IconThemeData(
+      color: kWhiteColor, size: 30, // Geri buton rengi
+    ),
+    titleTextStyle: TextStyle(
+      color: kWhiteColor, // Başlık rengi
+      fontSize: 20, // Başlık font büyüklüğü
+    ),
+  ),
   colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
   useMaterial3: true,
   inputDecorationTheme: InputDecorationTheme(

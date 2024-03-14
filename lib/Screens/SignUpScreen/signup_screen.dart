@@ -177,6 +177,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               await fireStoreService.addNewUser(users);
               // ignore: use_build_context_synchronously
               Navigator.pushNamed(
+                // ignore: use_build_context_synchronously
                 context,
                 homeScreenPath,
               );
