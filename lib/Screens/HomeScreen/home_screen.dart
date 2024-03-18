@@ -6,6 +6,8 @@ import 'package:tarim_ai/Screens/CreateFieldScreen/list_fields_screen.dart';
 import 'package:tarim_ai/Screens/SelectedFieldScreen/selected_field_screen.dart';
 import 'package:tarim_ai/Services/auth_service.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/custom_image_button.dart';
+import 'package:tarim_ai/Utils/CustomWidgets/large_card.dart';
+import 'package:tarim_ai/Utils/CustomWidgets/small_card.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/small_weather_app.dart';
 
 // SmallCard ve LargeCard widget tanımlamalarınızı buraya ekleyin...
@@ -67,6 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SmallWeatherApp(),
+          Expanded(
+            child: buildCardGrid(),
+          ),
         ],
       ),
     );
@@ -164,5 +169,32 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     });
+  }
+
+  Widget buildCardGrid() {
+    // Tasarıma uygun olarak kartları oluşturur
+    return GridView.count(
+      crossAxisCount: 2,
+      childAspectRatio: 0.8, // Kartların boy/en oranını ayarlar
+      padding: const EdgeInsets.all(4.0),
+      mainAxisSpacing: 4.0, // Dikey boşluk
+      crossAxisSpacing: 4.0, // Yatay boşluk
+      children: [
+        SmallCard(
+          icon: Icons.eco,
+          title: 'MY FARM',
+          onTap: () {
+            // Eylem
+          },
+        ),
+        LargeCard(
+          icon: Icons.store,
+          title: 'SHOP',
+          subtitle: 'Everything you need',
+          onTap: () {},
+        ),
+        // Diğer kartları ekleyin...
+      ],
+    );
   }
 }
