@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       title: 'Stock App',
       theme: appTheme,
       getPages: getPages,
-      initialRoute: splashScreenPath,
+      initialRoute: homeScreenPath,
     );
   }
 }

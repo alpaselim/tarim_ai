@@ -4,6 +4,7 @@ import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Screens/CreateFieldScreen/list_fields_screen.dart';
 import 'package:tarim_ai/Screens/SelectedFieldScreen/selected_field_screen.dart';
+import 'package:tarim_ai/Screens/WeedDetectionScreen.dart/weed_detection_screen.dart';
 import 'package:tarim_ai/Services/auth_service.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/custom_image_button.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/large_card.dart';
@@ -173,28 +174,148 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildCardGrid() {
     // Tasarıma uygun olarak kartları oluşturur
-    return GridView.count(
-      crossAxisCount: 2,
-      childAspectRatio: 0.8, // Kartların boy/en oranını ayarlar
-      padding: const EdgeInsets.all(4.0),
-      mainAxisSpacing: 4.0, // Dikey boşluk
-      crossAxisSpacing: 4.0, // Yatay boşluk
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        SmallCard(
-          icon: Icons.eco,
-          title: 'MY FARM',
-          onTap: () {
-            // Eylem
-          },
+        Expanded(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: MyCard(
+                  height: 110,
+                  color: kSmallCardColor,
+                  imageAsset: 'assets/saat.png',
+                  title: 'TOPRAK ANALİZİ',
+                  onTap: () {
+                    Get.to(() => const WeedDetectionPage());
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: MyCard(
+                  height: 160,
+                  color: kLargeCardColor,
+                  imageAsset: 'assets/weed.png',
+                  title: 'YABANCI OT TESPİTİ',
+                  onTap: () {
+                    Get.to(() => const WeedDetectionPage());
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: MyCard(
+                  height: 130,
+                  color: kSmallCardColor,
+                  imageAsset: 'assets/marketing.png',
+                  title: 'PAZARLAMA YARDIMI',
+                  onTap: () {
+                    Get.to(() => const WeedDetectionPage());
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
-        LargeCard(
-          icon: Icons.store,
-          title: 'SHOP',
-          subtitle: 'Everything you need',
-          onTap: () {},
+        Expanded(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: MyCard(
+                  height: 140,
+                  color: kLargeCardColor,
+                  imageAsset: 'assets/beetle.png',
+                  title: 'BÖCEK TESPİTİ',
+                  onTap: () {
+                    Get.to(() => const WeedDetectionPage());
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: MyCard(
+                  height: 110,
+                  color: kSmallCardColor,
+                  imageAsset: 'assets/watering.png',
+                  title: 'SULAMA YARDIMI',
+                  onTap: () {
+                    Get.to(() => const WeedDetectionPage());
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: MyCard(
+                  height: 150,
+                  color: kLargeCardColor,
+                  imageAsset: 'assets/carbon_footprint.png',
+                  title: 'KARBON AYAKİZİ',
+                  onTap: () {
+                    Get.to(() => const WeedDetectionPage());
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
-        // Diğer kartları ekleyin...
       ],
+    );
+  }
+}
+
+class MyCard extends StatelessWidget {
+  final double height;
+  final Color color;
+  final String imageAsset;
+  final String title;
+  final VoidCallback onTap;
+
+  const MyCard(
+      {Key? key,
+      required this.height,
+      required this.color,
+      required this.imageAsset,
+      required this.title,
+      required this.onTap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        color: color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+              25), // Kenarları oval yapar, istediğiniz yuvarlaklık derecesini buradan ayarlayabilirsiniz
+        ),
+        child: SizedBox(
+          height: height,
+          width: MediaQuery.of(context).size.width * 0.5,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                imageAsset,
+                width: 50, // Örnek bir genişlik
+                height: 50, // Örnek bir yükseklik
+              ),
+              const SizedBox(height: 10),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,0 +1,338 @@
+[
+
+    {
+        
+        "bitkiAdi": {
+            "bilimsel": "Galium aparine",
+            "turkce": "Yapışkan ot"
+          },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Elle Çıkarma",
+            "aciklama": "Yapışkan otun elle çekilmesi, özellikle genç bitkilerde etkili olabilir ve hızla yayılmasını önler."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Toprak Örtüsü",
+            "aciklama": "Yapışkan otun tohumlarının çimlenmesini engellemek için toprağı örtü malzemeleri ile kaplamak yararlı olabilir."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Paraquat",
+            "aciklama": "Hızlı etkili bir kontak herbisit olarak yapışkan otun yoğun olduğu alanlarda kullanılabilir."
+          }
+        }
+    },
+    
+    
+    {
+       
+        "bitkiAdi": {
+            "bilimsel": "Poa annua",
+            "turkce": "Yıllık Maviot"
+          },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Elle Çıkarma",
+            "aciklama": "Yıllık maviotun yoğun olarak büyüdüğü alanlarda, bitkileri kökleriyle birlikte elle çıkararak kontrol altına almak mümkündür. Bu, özellikle çiçeklenmeden önce yapılmalıdır."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Rekabetçi Çim Ekimi",
+            "aciklama": "Yıllık maviotunun baskınlaşmasını önlemek için, etkilenen alanlarda yoğun ve rekabetçi çim türlerinin ekimi yapılabilir. Bu, yıllık maviotunun gelişimini sınırlar ve yayılmasını engeller."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Dicamba",
+            "aciklama": "Geniş yapraklı yabani otlar ve bazı çimen türlerine karşı etkili olan bir herbisit olup, yıllık maviotun kontrolünde de kullanılabilir."
+          }
+        }
+      },
+    
+      {
+        
+        "bitkiAdi": {
+            "bilimsel": "Cyprinus carpio",
+            "turkce": "Sazan Kuyruğu"
+          },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Elle Çıkarma",
+            "aciklama": "Sazan kuyruğunu kontrol etmek için, genç bitkileri kökleriyle birlikte elle çıkarabilirsiniz. Bu yöntem, bitkiler yoğunlaşmadan erken dönemde etkilidir."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Su Yönetimi",
+            "aciklama": "Özellikle pirinç tarlalarında, su seviyesinin dikkatli bir şekilde yönetilmesi, sazan kuyruğunun çimlenme ve büyümesini sınırlayabilir."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Quinclorac",
+            "aciklama": "Sazan kuyruğuna karşı özellikle etkili bir herbisit olup, çimlenme sonrası (post-emergence) uygulama için kullanılır."
+          }
+        }
+      },
+    
+      {
+        
+        "bitkiAdi": {
+            "bilimsel": "Ambrosia artemisiifolia",
+            "turkce": "Pelinsu"
+          },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Elle Çıkarma",
+            "aciklama": "Pelinsu gençken, bitkileri kökleriyle birlikte elle çıkararak etkili bir şekilde kontrol altına alınabilir."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Arazi İşleme",
+            "aciklama": "Pelinsunun tohumlarının çimlenmesini engellemek için, hasattan sonra arazi işleme yapmak yararlı olabilir."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Mesotrione",
+            "aciklama": "Genç pelinsu bitkilerine karşı seçici bir herbisit olarak kullanılabilir, mısır gibi tarım alanlarında etkilidir."
+          }
+        }
+      },
+    
+      {
+        "bitkiAdi": {
+            "bilimsel": "Stellaria media",
+            "turkce": "Yıldızotu"
+          },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Elle Çıkarma",
+            "aciklama": "Yıldızotunun yoğun olarak büyüdüğü küçük alanlarda, bitkileri kökleriyle birlikte elle çıkararak müdahale etmek etkilidir."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Yoğun Çimlendirme",
+            "aciklama": "Yıldızotunun baskınlaşmasını önlemek için, etkilenen alanlarda sağlıklı çim örtüsü oluşturmak önemlidir."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "MCPA",
+            "aciklama": "Geniş yapraklı yabani otlara karşı etkili bir herbisit olup, yıldızotu üzerinde de kullanılabilir."
+          }
+        }
+      },
+      
+      {
+        
+        "bitkiAdi": {
+            "bilimsel": "Digitaria sanguinalis",
+            "turkce": "Kanlı Darı"
+          },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Elle Çıkarma",
+            "aciklama": "Bitki gençken, özellikle tohum çimlenme döneminde elle çıkarma yöntemiyle mücadele etmek etkilidir."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Yoğun Çimlendirme",
+            "aciklama": "Kanlı darının baskınlaşmasını önlemek için, etkilenen alanlarda yoğun ve sağlıklı çim örtüsü oluşturmak önemlidir."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Pendimethalin",
+            "aciklama": "Ön çimlenme herbisiti olarak kullanıldığında, kanlı darı tohumlarının çimlenmesini önlemeye yardımcı olur."
+          }
+        }
+      },
+      
+
+      {
+        "bitkiAdi": {
+          "bilimsel": "Portulaca oleracea",
+          "turkce": "Semizotu"
+        },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Elle Çıkarma",
+            "aciklama": "Semizotunun hızlı yayılmasını önlemek için, bitkileri mümkün olduğunca erken evrede elle çekerek çıkarın."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Toprak Örtüsü",
+            "aciklama": "Tohumların çimlenmesini engellemek için mulçlama veya diğer örtü malzemeleri kullanılabilir."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Oksifluorfen",
+            "aciklama": "Geniş yapraklı yabani otlara karşı selektif etkiye sahip bir herbisit olup, semizotunun kontrolünde etkilidir."
+          }
+        }
+      },
+    
+ 
+      {
+        "bitkiAdi": {
+          "bilimsel": "Echinochloa crus-galli",
+          "turkce": "Horozibiği"
+        },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Dip Çıkarma",
+            "aciklama": "Çiçeklenmeden önce bitkinin köklerini topraktan çıkararak çoğalmasını engelleyebilirsiniz."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Su Yönetimi",
+            "aciklama": "Özellikle pirinç tarlalarında su seviyelerini yönetmek, horozibiğinin gelişimini sınırlayabilir."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Propanil",
+            "aciklama": "Özellikle pirinç tarlalarında kullanılan, horozibiğine karşı seçici bir herbisittir."
+          }
+        }
+      },
+    
+      {
+        "bitkiAdi": {
+          "bilimsel": "Convolvulus arvensis",
+          "turkce": "Tarla Sarmasığını"
+        },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Dip Kırma",
+            "aciklama": "Tarla sarmasığının kök sistemini bozmak ve çimlenme yeteneğini azaltmak için derin toprak işleme yapılabilir."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Uygun Münavebe",
+            "aciklama": "Tarla sarmasığının gelişimini engellemek için tahıl gibi rekabetçi bitkilerle münavebe yapılabilir."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Dikvat",
+            "aciklama": "Tarla sarmasığının foliar uygulaması için etkili bir kontak herbisittir."
+          }
+        }
+      }, 
+    
+      {
+        "bitkiAdi": {
+          "bilimsel": "Sorghum halepense",
+          "turkce": "Yabani Süpürge Darısı"
+        },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Kök Sökme",
+            "aciklama": "Yabani süpürge darısının genişleyen rizomlarını ve köklerini manuel olarak kazarak yok edebilirsiniz. Bu, özellikle genç bitkiler için etkili bir yöntemdir."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Yoğun Tarla İşleme",
+            "aciklama": "Rizomların parçalanmasını sağlamak için derin toprak işleme ve ardından yoğun tarla bakımı, bitkinin yayılmasını engelleyebilir."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Haloksifop",
+            "aciklama": "Darı türlerine özgü bir herbisit olup, bu yabani ota karşı selektif etki gösterebilir."
+          }
+        }
+      },
+    
+    
+      {
+        "bitkiAdi": {
+          "bilimsel": "Amaranthus retroflexus",
+          "turkce": "Tersyüz Amarantı"
+        },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Dip Çıkarma",
+            "aciklama": "Bitkinin tohum atmadan önce köklerini topraktan çıkarmak, gelecek sezon tekrar çıkmasını engelleyebilir."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Yoğun Çimlendirme",
+            "aciklama": "Tersyüz amarantının geliştiği alanlarda yoğun çim ekimi yaparak ışık rekabetini artırabilir ve bitkinin gelişimini sınırlayabilirsiniz."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Pendimethalin",
+            "aciklama": "Toprakta uygulanan bu ön çimlenme herbisiti, amarantın tohumlarının çimlenmesini engellemeye yardımcı olabilir."
+          }
+        }
+      },
+      {
+        "bitkiAdi": {
+          "bilimsel": "Carduus nutans",
+          "turkce": "Eğik Diken"
+        },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Biçme",
+            "aciklama": "Eğik dikenin çiçeklenme döneminden önce tekrarlanan biçme işlemleri, bitkinin tohum üretimini ve enerji depolamasını engelleyebilir."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Rekabetçi Çimlendirme",
+            "aciklama": "Eğik dikenin bulunduğu alanlarda yoğun çimlendirme yaparak, onun için uygun yaşam alanını azaltın ve rekabeti artırın."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Fluroksipir",
+            "aciklama": "Eğik dikenin genç ve aktif büyüme aşamasında, özellikle rozet yaprakları gelişirken fluroksipir uygulaması yapılabilir."
+          }
+        }
+      },
+      {
+        "bitkiAdi": {
+          "bilimsel": "Sorghum halepense",
+          "turkce": "Yabani Süpürge Darısı"
+        },
+        "mekanikYontemler": {
+          "yontem": {
+            "ad": "Kök Sökme",
+            "aciklama": "Yabani süpürge darısının genişleyen rizomlarını ve köklerini manuel olarak kazarak yok edebilirsiniz. Bu, özellikle genç bitkiler için etkili bir yöntemdir."
+          }
+        },
+        "kulturelYontemler": {
+          "yontem": {
+            "ad": "Yoğun Tarla İşleme",
+            "aciklama": "Rizomların parçalanmasını sağlamak için derin toprak işleme ve ardından yoğun tarla bakımı, bitkinin yayılmasını engelleyebilir."
+          }
+        },
+        "kimyasalYontemler": {
+          "yontem": {
+            "ad": "Haloksifop",
+            "aciklama": "Darı türlerine özgü bir herbisit olup, bu yabani ota karşı selektif etki gösterebilir."
+          }
+        }
+      }
+
+
+
+
+]
