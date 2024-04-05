@@ -3,12 +3,11 @@ import 'package:get/get.dart';
 import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Screens/CreateFieldScreen/list_fields_screen.dart';
+import 'package:tarim_ai/Screens/InsectDetectionScreen/insect_detection_screen.dart';
 import 'package:tarim_ai/Screens/SelectedFieldScreen/selected_field_screen.dart';
 import 'package:tarim_ai/Screens/WeedDetectionScreen.dart/weed_detection_screen.dart';
 import 'package:tarim_ai/Services/auth_service.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/custom_image_button.dart';
-import 'package:tarim_ai/Utils/CustomWidgets/large_card.dart';
-import 'package:tarim_ai/Utils/CustomWidgets/small_card.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/small_weather_app.dart';
 
 // SmallCard ve LargeCard widget tanımlamalarınızı buraya ekleyin...
@@ -230,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   imageAsset: 'assets/beetle.png',
                   title: 'BÖCEK TESPİTİ',
                   onTap: () {
-                    Get.to(() => const WeedDetectionPage());
+                    Get.to(() => const InsectDetectionPage());
                   },
                 ),
               ),

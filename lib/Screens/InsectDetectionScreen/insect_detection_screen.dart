@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
@@ -9,17 +8,17 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/app_service.dart';
 
-class WeedDetectionPage extends StatefulWidget {
-  const WeedDetectionPage({super.key});
+class InsectDetectionPage extends StatefulWidget {
+  const InsectDetectionPage({super.key});
 
   @override
-  State<WeedDetectionPage> createState() => _MyHomePageState();
+  State<InsectDetectionPage> createState() => _InsectDetectionPageState();
 }
 
-class _MyHomePageState extends State<WeedDetectionPage> {
+class _InsectDetectionPageState extends State<InsectDetectionPage> {
   final apiService = AppService();
   File? _selectedImage;
-  String weedName = '';
+  String insectName = '';
   String diseasePrecautions = '';
   bool detecting = false;
   bool precautionLoading = false;
@@ -39,8 +38,8 @@ class _MyHomePageState extends State<WeedDetectionPage> {
       detecting = true;
     });
     try {
-      weedName =
-          await apiService.sendImageToGPT4VisionForWeed(image: _selectedImage!);
+      insectName = await apiService.sendImageToGPT4VisionForInsect(
+          image: _selectedImage!);
     } catch (error) {
       _showErrorSnackBar(error);
     } finally {
@@ -57,11 +56,11 @@ class _MyHomePageState extends State<WeedDetectionPage> {
     try {
       if (diseasePrecautions == '') {
         Map<String, dynamic> diseasePrecautionsMap =
-            await apiService.sendRequestForWeed(weedName);
+            await apiService.sendRequestForInsect(insectName);
         diseasePrecautions = json.encode(diseasePrecautionsMap);
         print(diseasePrecautions);
       }
-      _showSuccessDialog(weedName, diseasePrecautions);
+      _showSuccessDialog(insectName, diseasePrecautions);
     } catch (error) {
       _showErrorSnackBar(error);
     } finally {
@@ -234,7 +233,7 @@ class _MyHomePageState extends State<WeedDetectionPage> {
                       ),
                     ),
                   ),
-          if (weedName != '')
+          if (insectName != '')
             Column(
               children: [
                 Container(
@@ -255,7 +254,7 @@ class _MyHomePageState extends State<WeedDetectionPage> {
                             totalRepeatCount: 1,
                             animatedTexts: [
                               TyperAnimatedText(
-                                weedName.trim(),
+                                insectName.trim(),
                               ),
                             ]),
                       )
