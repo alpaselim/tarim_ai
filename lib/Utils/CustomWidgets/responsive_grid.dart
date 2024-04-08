@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ResponsiveGrid extends StatelessWidget {
+  const ResponsiveGrid({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Ekran boyutunu al

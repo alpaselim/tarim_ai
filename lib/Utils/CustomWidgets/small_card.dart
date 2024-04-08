@@ -21,7 +21,7 @@ class SmallCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: InkWell(
         onTap: onTap,
-        child: Container(
+        child: SizedBox(
           width: cardWidth,
           height: cardHeight,
           child: Column(
@@ -29,7 +29,7 @@ class SmallCard extends StatelessWidget {
             children: [
               Icon(icon, size: cardHeight * 0.4, color: Colors.green),
               SizedBox(height: cardHeight * 0.1),
-              Text(title, style: TextStyle(color: Colors.green)),
+              Text(title, style: const TextStyle(color: Colors.green)),
             ],
           ),
         ),

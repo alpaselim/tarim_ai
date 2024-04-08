@@ -58,7 +58,6 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
         Map<String, dynamic> diseasePrecautionsMap =
             await apiService.sendRequestForInsect(insectName);
         diseasePrecautions = json.encode(diseasePrecautionsMap);
-        print(diseasePrecautions);
       }
       _showSuccessDialog(insectName, diseasePrecautions);
     } catch (error) {
@@ -179,7 +178,7 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
             ],
           ),
           _selectedImage == null
-              ? Container(
+              ? SizedBox(
                   height: MediaQuery.of(context).size.height * 0.5,
                   child: Image.asset('assets/pick1.png'),
                 )
@@ -238,7 +237,8 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
               children: [
                 Container(
                   height: MediaQuery.of(context).size.height * 0.2,
-                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -47,8 +47,8 @@ class AppService {
   }
 
   Future<Map<String, dynamic>> sendRequestForWeed(String weedName) async {
-    final String apiURL = 'https://api.openai.com/v1/chat/completions';
-    final String apiKey = "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";
+    const String apiURL = 'https://api.openai.com/v1/chat/completions';
+    const String apiKey = "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";
 
     final response = await http.post(
       Uri.parse(apiURL),
@@ -71,7 +71,6 @@ class AppService {
 
     if (response.statusCode == 200) {
       String decodedResponse = utf8.decode(response.bodyBytes);
-      print(decodedResponse);
       return json.decode(decodedResponse);
     } else {
       throw Exception(
@@ -80,8 +79,8 @@ class AppService {
   }
 
   Future<Map<String, dynamic>> sendRequestForInsect(String insectName) async {
-    final String apiURL = 'https://api.openai.com/v1/chat/completions';
-    final String apiKey = "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";
+    const String apiURL = 'https://api.openai.com/v1/chat/completions';
+    const String apiKey = "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";
 
     final response = await http.post(
       Uri.parse(apiURL),
@@ -104,7 +103,6 @@ class AppService {
 
     if (response.statusCode == 200) {
       String decodedResponse = utf8.decode(response.bodyBytes);
-      print(decodedResponse);
       return json.decode(decodedResponse);
     } else {
       throw Exception(

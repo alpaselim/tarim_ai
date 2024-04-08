@@ -4,6 +4,7 @@ import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Screens/CreateFieldScreen/list_fields_screen.dart';
 import 'package:tarim_ai/Screens/InsectDetectionScreen/insect_detection_screen.dart';
+import 'package:tarim_ai/Screens/IrrigationScreen/irrigation_screen.dart';
 import 'package:tarim_ai/Screens/SelectedFieldScreen/selected_field_screen.dart';
 import 'package:tarim_ai/Screens/WeedDetectionScreen.dart/weed_detection_screen.dart';
 import 'package:tarim_ai/Services/auth_service.dart';
@@ -241,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   imageAsset: 'assets/watering.png',
                   title: 'SULAMA YARDIMI',
                   onTap: () {
-                    Get.to(() => const WeedDetectionPage());
+                    Get.to(() => const IrrigationScreen());
                   },
                 ),
               ),

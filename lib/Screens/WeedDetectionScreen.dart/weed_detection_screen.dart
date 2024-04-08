@@ -59,7 +59,6 @@ class _MyHomePageState extends State<WeedDetectionPage> {
         Map<String, dynamic> diseasePrecautionsMap =
             await apiService.sendRequestForWeed(weedName);
         diseasePrecautions = json.encode(diseasePrecautionsMap);
-        print(diseasePrecautions);
       }
       _showSuccessDialog(weedName, diseasePrecautions);
     } catch (error) {
@@ -180,7 +179,7 @@ class _MyHomePageState extends State<WeedDetectionPage> {
             ],
           ),
           _selectedImage == null
-              ? Container(
+              ? SizedBox(
                   height: MediaQuery.of(context).size.height * 0.5,
                   child: Image.asset('assets/pick1.png'),
                 )
@@ -239,7 +238,8 @@ class _MyHomePageState extends State<WeedDetectionPage> {
               children: [
                 Container(
                   height: MediaQuery.of(context).size.height * 0.2,
-                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

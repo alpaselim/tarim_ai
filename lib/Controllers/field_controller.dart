@@ -6,6 +6,7 @@ class FieldController extends GetxController {
   var selectedFieldId = RxnString();
   var selectedFieldName = RxnString();
   var soilData = Rxn<SoilAnalysis>();
+  var productName = RxnString();
 
   void selectField(String? id, String? name, SoilAnalysis? data) {
     selectedFieldId.value = id;
@@ -18,26 +19,14 @@ class FieldController extends GetxController {
     }
   }
 
+  void setProduct(String? product) {
+    productName.value = product;
+  }
+
   void clearSelection() {
     selectedFieldId.value = null;
     selectedFieldName.value = null;
     soilData.value = null;
+    productName.value = null;
   }
 }
-
-
-
-
-
-/*import 'package:get/get.dart';
-
-class FieldController extends GetxController {
-  var selectedFieldId = RxnString();
-  var selectedFieldName = RxnString();
-
-  void selectField(String? id, String? name) {
-    selectedFieldId.value = id;
-    selectedFieldName.value = name;
-    update();
-  }
-} */

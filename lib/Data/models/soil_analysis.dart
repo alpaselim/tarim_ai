@@ -1,4 +1,5 @@
 class SoilAnalysis {
+  String? product;
   String? fieldId;
   dynamic latitude;
   dynamic longitude;
@@ -22,6 +23,7 @@ class SoilAnalysis {
   String? boron;
 
   SoilAnalysis({
+    this.product,
     this.fieldId,
     this.latitude,
     this.longitude,
@@ -46,6 +48,7 @@ class SoilAnalysis {
   });
 
   SoilAnalysis.fromJson(Map<String, dynamic> json) {
+    product = json['product'];
     fieldId = json['fieldId'];
     latitude = json['latitude'];
     longitude = json['longitude'];
@@ -71,7 +74,7 @@ class SoilAnalysis {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-
+    data['product'] = product;
     data['fieldId'] = fieldId;
     data['latitude'] = latitude;
     data['longitude'] = longitude;

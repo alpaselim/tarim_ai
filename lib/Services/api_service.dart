@@ -9,7 +9,7 @@ getCurrentWeather(lat, long) async {
   var res = await http.get(Uri.parse(link));
   if (res.statusCode == 200) {
     var data = currentWeatherDataFromJson(res.body.toString());
-    //print("Api service: ${res.body}");
+    print("Api service: ${res.body}");
     return data;
   }
 }
@@ -17,6 +17,17 @@ getCurrentWeather(lat, long) async {
 getHourlyWeather(lat, long) async {
   var link =
       "https://api.openweathermap.org/data/2.5/forecast?lat=$lat&lon=$long&appid=$apiKey&units=metric";
+  var res = await http.get(Uri.parse(link));
+  if (res.statusCode == 200) {
+    var data = hourlyWeatherDataFromJson(res.body.toString());
+
+    return data;
+  }
+}
+
+getDaillyWeather(lat, long) async {
+  var link =
+      "https://api.openweathermap.org/data/2.5/forecast?lat=$lat&lon=$long&appid=$apiKey";
   var res = await http.get(Uri.parse(link));
   if (res.statusCode == 200) {
     var data = hourlyWeatherDataFromJson(res.body.toString());

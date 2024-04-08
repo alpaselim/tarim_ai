@@ -20,17 +20,21 @@ class MainController extends GetxController {
             getCurrentWeather(soilData.latitude!, soilData.longitude!);
         hourlyWeatherData =
             getHourlyWeather(soilData.latitude!, soilData.longitude!);
+        daillyWeatherData =
+            getDaillyWeather(soilData.latitude!, soilData.longitude!);
       }
     } else {
       // Eğer soilData yoksa veya içinde konum bilgisi yoksa, kullanıcının mevcut konumunu kullan
       await getUserLocation();
       currentWeatherData = getCurrentWeather(latitude.value, longitude.value);
       hourlyWeatherData = getHourlyWeather(latitude.value, longitude.value);
+      daillyWeatherData = getDaillyWeather(latitude.value, longitude.value);
     }
   }
 
   dynamic currentWeatherData;
   dynamic hourlyWeatherData;
+  dynamic daillyWeatherData;
   var latitude = 0.0.obs;
   var longitude = 0.0.obs;
   var isloaded = false.obs;
@@ -39,7 +43,7 @@ class MainController extends GetxController {
     // Hava durumu API'sini kullanarak verileri al
     currentWeatherData = getCurrentWeather(lat, lon);
     hourlyWeatherData = getHourlyWeather(lat, lon);
-    // UI'da göstermek üzere değerleri güncelle
+    daillyWeatherData = getDaillyWeather(lat, lon);
     isloaded.value = false; // Yükleniyor durumuna getir
     await Future.delayed(
         const Duration(milliseconds: 100)); // API'den yanıt bekleniyor
