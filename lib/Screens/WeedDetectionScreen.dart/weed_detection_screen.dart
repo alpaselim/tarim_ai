@@ -50,17 +50,23 @@ class _MyHomePageState extends State<WeedDetectionPage> {
     }
   }
 
-  showPrecautions() async {
+  void showPrecautions() async {
     setState(() {
       precautionLoading = true;
     });
     try {
+      Map<String, dynamic> diseasePrecautionsMap;
       if (diseasePrecautions == '') {
-        Map<String, dynamic> diseasePrecautionsMap =
-            await apiService.sendRequestForWeed(weedName);
-        diseasePrecautions = json.encode(diseasePrecautionsMap);
+        diseasePrecautionsMap = await apiService.sendRequestForWeed(weedName);
+        // JSON'dan assistant'ın content kısmını al
+        String assistantContent =
+            diseasePrecautionsMap['choices'][0]['message']['content'];
+        diseasePrecautions = json.encode(
+            assistantContent); // Bu kısmı sadece assistant content olarak güncelleyin.
       }
-      _showSuccessDialog(weedName, diseasePrecautions);
+      // Gelen içeriği göstermek için kullanın.
+      _showSuccessDialog(weedName,
+          diseasePrecautions); // Başlıkta 'Recommended Plant' kullanabilirsiniz.
     } catch (error) {
       _showErrorSnackBar(error);
     } finally {
@@ -180,8 +186,8 @@ class _MyHomePageState extends State<WeedDetectionPage> {
           ),
           _selectedImage == null
               ? SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  child: Image.asset('assets/pick1.png'),
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: Image.asset('assets/weed_detection.jpg'),
                 )
               : Expanded(
                   child: Container(

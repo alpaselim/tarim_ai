@@ -22,7 +22,14 @@ class _SelectedFieldState extends State<SelectedField> {
       backgroundColor: ksoftGreenColor,
       appBar: AppBar(
         backgroundColor: kGreenColor,
-        title: const Text('Select Field'),
+        title: const Text(
+          'Select a Field',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.bold,
+            color: kWhiteColor,
+          ),
+        ),
       ),
       body: StreamBuilder<QuerySnapshot<SoilAnalysis>>(
         stream: StreamService().getCurrentUserFields(),

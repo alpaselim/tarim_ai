@@ -1,8 +1,12 @@
+import 'dart:convert';
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Screens/IrrigationScreen/field_info.dart';
-import 'package:tarim_ai/Controllers/field_controller.dart'; // FieldController import edildi
+import 'package:tarim_ai/Controllers/field_controller.dart';
+import 'package:tarim_ai/Services/app_service.dart'; // FieldController import edildi
 
 class IrrigationScreen extends StatefulWidget {
   const IrrigationScreen({Key? key}) : super(key: key);
@@ -13,6 +17,11 @@ class IrrigationScreen extends StatefulWidget {
 
 class _IrrigationScreenState extends State<IrrigationScreen> {
   TextEditingController productNameController = TextEditingController();
+  final apiService = AppService();
+  String fieldInfo = '';
+  String diseasePrecautions = '';
+  bool detecting = false;
+  bool precautionLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +30,11 @@ class _IrrigationScreenState extends State<IrrigationScreen> {
         backgroundColor: kGreenColor,
         automaticallyImplyLeading: false,
         title: const Text(
-          'Sulama Yardımı',
+          'Irrigation Assistant',
           style: TextStyle(
               fontFamily: 'Poppins',
               fontWeight: FontWeight.bold,
-              color: kBlackColor),
+              color: kWhiteColor),
         ),
       ),
       body: Center(
@@ -39,7 +48,7 @@ class _IrrigationScreenState extends State<IrrigationScreen> {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Insect Detection Page',
+              'What plant is in the field?',
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
             ),
             const SizedBox(height: 20),

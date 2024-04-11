@@ -30,8 +30,8 @@ class MapSmpleState extends State<MapSmple> {
           GoogleMap(
             mapType: MapType.hybrid,
             initialCameraPosition: const CameraPosition(
-              target: LatLng(3.42796133580664, 32.085749655962),
-              zoom: 14.4746,
+              target: LatLng(39.925533, 32.866287), //
+              zoom: 8.4746,
             ),
             onTap: _handleTap,
             markers: Set<Marker>.of(markers.values),
@@ -91,7 +91,7 @@ class MapSmpleState extends State<MapSmple> {
                           kRedColor), // Arka plan rengi beyaz
                     ),
                     child: const Text(
-                      'Konumu Doğrula',
+                      'Verify Location',
                       style: TextStyle(
                         fontSize: 18.0,
                       ),

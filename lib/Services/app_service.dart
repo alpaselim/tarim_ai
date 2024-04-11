@@ -89,7 +89,7 @@ class AppService {
         'Authorization': 'Bearer $apiKey',
       },
       body: jsonEncode({
-        'model': 'ft:gpt-3.5-turbo-0125:personal:insect-detect:9AAuSVIr',
+        'model': 'ft:gpt-3.5-turbo-0125:personal:insect-detection:9CmOwzMh',
         'messages': [
           {
             "role": "system",
@@ -97,6 +97,72 @@ class AppService {
                 "Sana verilen haşere isimleri için mücadele tavsiyeleri veren bir uzmansın."
           },
           {"role": "user", "content": insectName},
+        ],
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      String decodedResponse = utf8.decode(response.bodyBytes);
+      return json.decode(decodedResponse);
+    } else {
+      throw Exception(
+          'API isteği başarısız oldu: HTTP Status ${response.statusCode}');
+    }
+  }
+
+  Future<Map<String, dynamic>> sendRequestForIrrigation(
+      String fieldInfo) async {
+    const String apiURL = 'https://api.openai.com/v1/chat/completions';
+    const String apiKey = "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";
+
+    final response = await http.post(
+      Uri.parse(apiURL),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Authorization': 'Bearer $apiKey',
+      },
+      body: jsonEncode({
+        'model': 'ft:gpt-3.5-turbo-0125:personal:irrigation-helper:9CeYdpvh',
+        'messages': [
+          {
+            "role": "system",
+            "content":
+                "Bitki ve tarla koşulları hakkında sulama tavsiyeleri sağlamak."
+          },
+          {"role": "user", "content": fieldInfo},
+        ],
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      String decodedResponse = utf8.decode(response.bodyBytes);
+      return json.decode(decodedResponse);
+    } else {
+      throw Exception(
+          'API isteği başarısız oldu: HTTP Status ${response.statusCode}');
+    }
+  }
+
+  Future<Map<String, dynamic>> sendRequestForSoilAnalysis(
+      String soilInfo) async {
+    const String apiURL = 'https://api.openai.com/v1/chat/completions';
+    const String apiKey = "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";
+
+    final response = await http.post(
+      Uri.parse(apiURL),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Authorization': 'Bearer $apiKey',
+      },
+      body: jsonEncode({
+        'model': 'ft:gpt-3.5-turbo-0125:personal:soil-analysis:9ClA0U9v',
+        'messages': [
+          {
+            "role": "system",
+            "content":
+                "Tarla verilerine göre ekilecek uygun bitki türünü öneren bir uzmansın."
+          },
+          {"role": "user", "content": soilInfo},
         ],
       }),
     );

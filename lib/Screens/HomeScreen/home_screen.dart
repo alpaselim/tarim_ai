@@ -6,6 +6,7 @@ import 'package:tarim_ai/Screens/CreateFieldScreen/list_fields_screen.dart';
 import 'package:tarim_ai/Screens/InsectDetectionScreen/insect_detection_screen.dart';
 import 'package:tarim_ai/Screens/IrrigationScreen/irrigation_screen.dart';
 import 'package:tarim_ai/Screens/SelectedFieldScreen/selected_field_screen.dart';
+import 'package:tarim_ai/Screens/SoilAnalysis/soil_info.dart';
 import 'package:tarim_ai/Screens/WeedDetectionScreen.dart/weed_detection_screen.dart';
 import 'package:tarim_ai/Services/auth_service.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/custom_image_button.dart';
@@ -32,9 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Text(
             'TarımAI',
             style: TextStyle(
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.bold,
-                color: kWhiteColor),
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.bold,
+              color: kWhiteColor,
+            ),
           ),
         ),
         actions: [
@@ -186,9 +188,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 110,
                   color: kSmallCardColor,
                   imageAsset: 'assets/saat.png',
-                  title: 'TOPRAK ANALİZİ',
+                  title: 'SOIL ANALYSIS',
                   onTap: () {
-                    Get.to(() => const WeedDetectionPage());
+                    Get.to(() => const SoilInfo());
                   },
                 ),
               ),
@@ -198,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 160,
                   color: kLargeCardColor,
                   imageAsset: 'assets/weed.png',
-                  title: 'YABANCI OT TESPİTİ',
+                  title: 'WEED DETECTION',
                   onTap: () {
                     Get.to(() => const WeedDetectionPage());
                   },
@@ -210,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 130,
                   color: kSmallCardColor,
                   imageAsset: 'assets/marketing.png',
-                  title: 'PAZARLAMA YARDIMI',
+                  title: 'MARKETING',
                   onTap: () {
                     Get.to(() => const WeedDetectionPage());
                   },
@@ -228,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 140,
                   color: kLargeCardColor,
                   imageAsset: 'assets/beetle.png',
-                  title: 'BÖCEK TESPİTİ',
+                  title: 'INSECT DETECTION',
                   onTap: () {
                     Get.to(() => const InsectDetectionPage());
                   },
@@ -240,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 110,
                   color: kSmallCardColor,
                   imageAsset: 'assets/watering.png',
-                  title: 'SULAMA YARDIMI',
+                  title: 'IRRIGATION',
                   onTap: () {
                     Get.to(() => const IrrigationScreen());
                   },
@@ -252,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 150,
                   color: kLargeCardColor,
                   imageAsset: 'assets/carbon_footprint.png',
-                  title: 'KARBON AYAKİZİ',
+                  title: 'CARBON FOOTPRINT',
                   onTap: () {
                     Get.to(() => const WeedDetectionPage());
                   },
