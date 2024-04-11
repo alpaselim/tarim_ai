@@ -21,7 +21,14 @@ class _ListFieldsState extends State<ListFields> {
       backgroundColor: ksoftGreenColor,
       appBar: AppBar(
         backgroundColor: kGreenColor,
-        title: const Text('Manage Fields'),
+        title: const Text(
+          'Manage Fields',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.bold,
+            color: kWhiteColor,
+          ),
+        ),
       ),
       body: StreamBuilder<QuerySnapshot<SoilAnalysis>>(
         stream: StreamService().getCurrentUserFields(),
@@ -64,11 +71,11 @@ class _ListFieldsState extends State<ListFields> {
                         <PopupMenuEntry<String>>[
                       const PopupMenuItem<String>(
                         value: 'edit',
-                        child: Text('Düzenle'),
+                        child: Text('Edit'),
                       ),
                       const PopupMenuItem<String>(
                         value: 'delete',
-                        child: Text('Sil'),
+                        child: Text('Delete'),
                       ),
                     ],
                   ),

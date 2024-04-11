@@ -23,6 +23,7 @@ final List<String> climate = [
   'Ilıman',
   'Karasal',
   'Kutup',
+  'Akdeniz',
 ];
 
 final List<String> soilTexture = [

@@ -49,7 +49,7 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
     }
   }
 
-  showPrecautions() async {
+  _showPrecautions() async {
     setState(() {
       precautionLoading = true;
     });
@@ -60,6 +60,33 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
         diseasePrecautions = json.encode(diseasePrecautionsMap);
       }
       _showSuccessDialog(insectName, diseasePrecautions);
+    } catch (error) {
+      _showErrorSnackBar(error);
+    } finally {
+      setState(() {
+        precautionLoading = false;
+      });
+    }
+  }
+
+  void showPrecautions() async {
+    setState(() {
+      precautionLoading = true;
+    });
+    try {
+      Map<String, dynamic> diseasePrecautionsMap;
+      if (diseasePrecautions == '') {
+        diseasePrecautionsMap =
+            await apiService.sendRequestForInsect(insectName);
+        // JSON'dan assistant'ın content kısmını al
+        String assistantContent =
+            diseasePrecautionsMap['choices'][0]['message']['content'];
+        diseasePrecautions = json.encode(
+            assistantContent); // Bu kısmı sadece assistant content olarak güncelleyin.
+      }
+      // Gelen içeriği göstermek için kullanın.
+      _showSuccessDialog(insectName,
+          diseasePrecautions); // Başlıkta 'Recommended Plant' kullanabilirsiniz.
     } catch (error) {
       _showErrorSnackBar(error);
     } finally {
@@ -178,9 +205,11 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
             ],
           ),
           _selectedImage == null
-              ? SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  child: Image.asset('assets/pick1.png'),
+              ? Center(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: Image.asset('assets/insect_detection.png'),
+                  ),
                 )
               : Expanded(
                   child: Container(

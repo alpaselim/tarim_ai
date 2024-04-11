@@ -1,114 +1,176 @@
 import 'dart:convert';
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Controllers/main_controller.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/app_service.dart';
 
-class FieldInfo extends StatefulWidget {
-  const FieldInfo({super.key});
+class SoilInfo extends StatefulWidget {
+  const SoilInfo({super.key});
 
   @override
-  State<FieldInfo> createState() => _FieldInfoState();
+  State<SoilInfo> createState() => _SoilInfoState();
 }
 
-class _FieldInfoState extends State<FieldInfo> {
+class _SoilInfoState extends State<SoilInfo> {
   FieldController fieldController = Get.find<FieldController>();
   final mainController = Get.put(MainController());
   final apiService = AppService();
-  String fieldInfo =
-      "Bitki Türü: Kiraz, Toprak Tipi: Ağır killi, Toprak pH: Hafif alkali, İklim: Nemli kıtasal, Hava Durumu: Yağmurlu, Sıcaklık: 21°C, Rüzgar Hızı: 3.5 m/s, Nem Oranı: %68, Bulutluluk Oranı: %75, Basınç: 1014 hPa";
+  String soilInfo = '';
   String diseasePrecautions = '';
   bool detecting = false;
   bool precautionLoading = false;
+  String soilType = '';
+  String soilPH = '';
+  String climate = '';
+  String salinity = '';
+  String kirecKapsami = '';
+  String organicMadde = '';
+  String toplamAzot = '';
+  String fosfor = '';
+  String kalsiyum = '';
+  String magnezyum = '';
+  String sodyum = '';
+  String potasyum = '';
+  String demir = '';
+  String bakir = '';
+  String cinko = '';
+  String mangan = '';
+  String bor = '';
 
   // FieldController'dan soilData'nın var olup olmadığını kontrol et
 
   @override
   Widget build(BuildContext context) {
-    String soilType = '';
-    String soilPH = '';
-    String climate = '';
     if (fieldController.soilData.value != null) {
       // soilData varsa ve içinde latitude & longitude bilgisi varsa kullan
       var soilData = fieldController.soilData.value!;
       soilType = soilData.soilStructure!;
       soilPH = soilData.soilReaction!;
       climate = soilData.climate!;
+      salinity = soilData.electricalConductivity!;
+      kirecKapsami = soilData.limeContent!;
+      organicMadde = soilData.organicMatter!;
+      toplamAzot = soilData.totalNitrogen!;
+      fosfor = soilData.phosphorusContent!;
+      kalsiyum = soilData.calsiyum!;
+      magnezyum = soilData.magnesium!;
+      sodyum = soilData.sodium!;
+      potasyum = soilData.potassium!;
+      demir = soilData.iron!;
+      bakir = soilData.copper!;
+      cinko = soilData.zinc!;
+      mangan = soilData.manganese!;
+      bor = soilData.boron!;
+      soilInfo =
+          "İklim: $climate, Toprak bünyesi: $soilType, Toprak reaksiyonu: $soilPH, Tuzluluk oranı: $salinity, Kireç kapsamı: $kirecKapsami, Organik madde: $organicMadde, Toplam Azot: $toplamAzot, Fosfor miktarı: $fosfor, Kalsiyum: $kalsiyum, Magnezyum: $magnezyum, Sodyum: $sodyum, Potasyum: $potasyum, Demir: $demir, Bakır: $bakir, Çinko: $cinko, Mangan: $mangan, Bor: $bor";
     }
 
-    String productName = fieldController.productName.value ?? "";
-    var currentWeather = mainController.currentWeatherData;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kWhiteColor,
         automaticallyImplyLeading: false,
         title: const Text(
-          'Field Info',
+          'Soil Info',
           style: TextStyle(
               fontFamily: 'Poppins',
               fontWeight: FontWeight.bold,
               color: kBlackColor),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          InfoCard(
-            color: kInfoPageColor,
-            tanim: 'Bitki türü',
-            aciklama: productName,
-          ),
-          InfoCard(
-            color: kWhiteColor,
-            tanim: "Toprak Tipi",
-            aciklama: soilType,
-          ),
-          InfoCard(
-            color: kInfoPageColor,
-            tanim: "Toprak PH",
-            aciklama: soilPH,
-          ),
-          InfoCard(
-            color: kWhiteColor,
-            tanim: "İklim",
-            aciklama: climate,
-          ),
-          const InfoCard(
-            color: kInfoPageColor,
-            tanim: "Hava Durumu",
-            aciklama: 'Clouds',
-          ),
-          const InfoCard(
-            color: kWhiteColor,
-            tanim: "Sıcaklık",
-            aciklama: "11°",
-          ),
-          const InfoCard(
-            color: kInfoPageColor,
-            tanim: "Rüzgar Hızı",
-            aciklama: "1.82 m/s",
-          ),
-          const InfoCard(
-            color: kWhiteColor,
-            tanim: "Nem Oranı",
-            aciklama: "%64",
-          ),
-          const InfoCard(
-            color: kInfoPageColor,
-            tanim: "Bulutluluk Oranı",
-            aciklama: "%96",
-          ),
-          const InfoCard(
-            color: kWhiteColor,
-            tanim: "Basınç",
-            aciklama: "1016 hPa",
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            InfoCard(
+              color: kInfoPageColor,
+              tanim: 'İklim',
+              aciklama: climate,
+            ),
+            InfoCard(
+              color: kWhiteColor,
+              tanim: "Toprak Bünyesi",
+              aciklama: soilType,
+            ),
+            InfoCard(
+              color: kInfoPageColor,
+              tanim: "Toprak PH",
+              aciklama: soilPH,
+            ),
+            InfoCard(
+              color: kWhiteColor,
+              tanim: "Tuzluluk Oranı",
+              aciklama: salinity,
+            ),
+            InfoCard(
+              color: kInfoPageColor,
+              tanim: "Kireç Kapsamı",
+              aciklama: kirecKapsami,
+            ),
+            InfoCard(
+              color: kWhiteColor,
+              tanim: "Organik Madde",
+              aciklama: organicMadde,
+            ),
+            InfoCard(
+              color: kInfoPageColor,
+              tanim: "Toplam Azot",
+              aciklama: toplamAzot,
+            ),
+            InfoCard(
+              color: kWhiteColor,
+              tanim: "fosfor",
+              aciklama: fosfor,
+            ),
+            InfoCard(
+              color: kInfoPageColor,
+              tanim: "kalsiyum",
+              aciklama: kalsiyum,
+            ),
+            InfoCard(
+              color: kWhiteColor,
+              tanim: "magnezyum",
+              aciklama: magnezyum,
+            ),
+            InfoCard(
+              color: kInfoPageColor,
+              tanim: "Sodyum",
+              aciklama: sodyum,
+            ),
+            InfoCard(
+              color: kWhiteColor,
+              tanim: "Potasyum",
+              aciklama: potasyum,
+            ),
+            InfoCard(
+              color: kInfoPageColor,
+              tanim: "Demir",
+              aciklama: demir,
+            ),
+            InfoCard(
+              color: kWhiteColor,
+              tanim: "Bakır",
+              aciklama: bakir,
+            ),
+            InfoCard(
+              color: kInfoPageColor,
+              tanim: "Çinko",
+              aciklama: cinko,
+            ),
+            InfoCard(
+              color: kWhiteColor,
+              tanim: "Mangan",
+              aciklama: mangan,
+            ),
+            InfoCard(
+              color: kInfoPageColor,
+              tanim: "Bor",
+              aciklama: bor,
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(40.0, 0, 40, 12.0),
@@ -127,7 +189,7 @@ class _FieldInfoState extends State<FieldInfo> {
       Map<String, dynamic> diseasePrecautionsMap;
       if (diseasePrecautions == '') {
         diseasePrecautionsMap =
-            await apiService.sendRequestForIrrigation(fieldInfo);
+            await apiService.sendRequestForSoilAnalysis(soilInfo);
         // JSON'dan assistant'ın content kısmını al
         String assistantContent =
             diseasePrecautionsMap['choices'][0]['message']['content'];
@@ -135,7 +197,7 @@ class _FieldInfoState extends State<FieldInfo> {
             assistantContent); // Bu kısmı sadece assistant content olarak güncelleyin.
       }
       // Gelen içeriği göstermek için kullanın.
-      _showSuccessDialog('Irrigation Plan',
+      _showSuccessDialog('Recommended Plant',
           diseasePrecautions); // Başlıkta 'Recommended Plant' kullanabilirsiniz.
     } catch (error) {
       _showErrorSnackBar(error);
@@ -149,7 +211,7 @@ class _FieldInfoState extends State<FieldInfo> {
   void _showErrorSnackBar(Object error) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(error.toString()),
-      backgroundColor: Colors.red,
+      backgroundColor: kRedColor,
     ));
   }
 
