@@ -49,26 +49,6 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
     }
   }
 
-  _showPrecautions() async {
-    setState(() {
-      precautionLoading = true;
-    });
-    try {
-      if (diseasePrecautions == '') {
-        Map<String, dynamic> diseasePrecautionsMap =
-            await apiService.sendRequestForInsect(insectName);
-        diseasePrecautions = json.encode(diseasePrecautionsMap);
-      }
-      _showSuccessDialog(insectName, diseasePrecautions);
-    } catch (error) {
-      _showErrorSnackBar(error);
-    } finally {
-      setState(() {
-        precautionLoading = false;
-      });
-    }
-  }
-
   void showPrecautions() async {
     setState(() {
       precautionLoading = true;

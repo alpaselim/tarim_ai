@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Controllers/main_controller.dart';
@@ -42,7 +40,6 @@ class _FieldInfoState extends State<FieldInfo> {
     }
 
     String productName = fieldController.productName.value ?? "";
-    var currentWeather = mainController.currentWeatherData;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kWhiteColor,

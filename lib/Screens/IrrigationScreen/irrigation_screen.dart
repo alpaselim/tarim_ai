@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tarim_ai/Data/app_constants.dart';

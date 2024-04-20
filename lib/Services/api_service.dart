@@ -9,7 +9,6 @@ getCurrentWeather(lat, long) async {
   var res = await http.get(Uri.parse(link));
   if (res.statusCode == 200) {
     var data = currentWeatherDataFromJson(res.body.toString());
-    print("Api service: ${res.body}");
     return data;
   }
 }
