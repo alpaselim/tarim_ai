@@ -10,11 +10,13 @@ import 'package:tarim_ai/Screens/CreateFieldScreen/create_field_screen.dart';
 import 'package:tarim_ai/Screens/CreateFieldScreen/map_bar.dart';
 import 'package:tarim_ai/Screens/CreateFieldScreen/map_sample.dart';
 import 'package:tarim_ai/Screens/CreateFieldScreen/map_screen.dart';
+import 'package:tarim_ai/Screens/HomeScreen/home.dart';
 import 'package:tarim_ai/Screens/HomeScreen/home_screen.dart';
 import 'package:tarim_ai/Screens/LoginScreen/login_screen.dart';
 import 'package:tarim_ai/Screens/SelectedFieldScreen/selected_field_screen.dart';
 import 'package:tarim_ai/Screens/SignUpScreen/signup_screen.dart';
 import 'package:tarim_ai/Screens/SplashScreen/splash_screen.dart';
+import 'package:tarim_ai/Screens/UserScreen/user_screen.dart';
 import 'package:tarim_ai/Screens/WelcomeScreen/welcome_screen.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/weather_app.dart';
 import 'package:tarim_ai/firebase_options.dart';
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       title: 'Stock App',
       theme: appTheme,
       getPages: getPages,
-      initialRoute: homeScreenPath,
+      initialRoute: homePath,
     );
   }
 }
@@ -87,5 +89,13 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(
     name: selectedFieldPath,
     page: () => const SelectedField(),
+  ),
+  GetPage(
+    name: userScreenPath,
+    page: () => const UserScreen(),
+  ),
+  GetPage(
+    name: homePath,
+    page: () => const Home(),
   ),
 ];

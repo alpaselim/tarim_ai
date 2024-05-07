@@ -9,7 +9,9 @@ import 'package:tarim_ai/Screens/SelectedFieldScreen/selected_field_screen.dart'
 import 'package:tarim_ai/Screens/SoilAnalysis/soil_info.dart';
 import 'package:tarim_ai/Screens/WeedDetectionScreen.dart/weed_detection_screen.dart';
 import 'package:tarim_ai/Services/auth_service.dart';
+import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/custom_image_button.dart';
+import 'package:tarim_ai/Utils/CustomWidgets/drawer_widget.dart';
 import 'package:tarim_ai/Utils/CustomWidgets/small_weather_app.dart';
 
 // SmallCard ve LargeCard widget tanımlamalarınızı buraya ekleyin...
@@ -29,26 +31,35 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kGreenColor,
-        title: const Center(
-          child: Text(
-            'TarımAI',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.bold,
-              color: kWhiteColor,
-            ),
+        title: const Text(
+          'TarımAI',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.bold,
+            color: kWhiteColor,
           ),
         ),
+        centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.exit_to_app),
-            onPressed: () async {
-              await authService.signOut(context);
-            },
+            icon: const Icon(
+              Icons.info_rounded,
+            ),
+            onPressed: () {},
           ),
         ],
       ),
-      drawer: buildDrawer(),
+      /* floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: kGreenColor,
+        foregroundColor: Colors.white,
+        elevation: 5,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.camera_alt),
+      ),
+      bottomNavigationBar: const CustomButtomAppBar(), */
+      drawer: const DrawerWidget(),
       body: Column(
         children: [
           Container(
@@ -71,7 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          const SmallWeatherApp(),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: SmallWeatherApp(),
+          ),
           Expanded(
             child: buildCardGrid(),
           ),
@@ -86,9 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 100, 177, 100),
-            ),
+            decoration: BoxDecoration(color: kGreenColor),
             child: Text(
               'Kullanıcı Adı',
               style: TextStyle(
@@ -117,8 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           ListTile(
             title: const Text('Çıkış'),
-            onTap: () {
-              // Uygulamadan çıkış yap
+            onTap: () async {
+              await authService.signOut(context);
             },
           ),
         ],
@@ -138,16 +150,13 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         style: ButtonStyle(
           fixedSize: MaterialStateProperty.all<Size>(
-            const Size(
-                325.0, 50.0), // Genişlik ve yükseklik değerlerini ayarlayın
+            const Size(325.0, 50.0),
           ),
           backgroundColor: MaterialStateProperty.all<Color>(
               klightGreenColor), // Düğmenin arka plan rengi
           foregroundColor: MaterialStateProperty.all<Color>(
-              Colors.white), // Düğmenin metin rengi
-          // textStyle: MaterialStateProperty.all<TextStyle>(
-          //   const TextStyle(fontSize: 16.0), // Düğmenin metin boyutu
-          // ),
+              kWhiteColor), // Düğmenin metin rengi
+
           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
             const EdgeInsets.symmetric(
                 vertical: 10.0, horizontal: 16.0), // Düğmenin iç içe boşluğu

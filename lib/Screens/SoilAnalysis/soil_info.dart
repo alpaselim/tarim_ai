@@ -6,6 +6,7 @@ import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Controllers/main_controller.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/app_service.dart';
+import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart';
 
 class SoilInfo extends StatefulWidget {
   const SoilInfo({super.key});
@@ -70,7 +71,7 @@ class _SoilInfoState extends State<SoilInfo> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kWhiteColor,
+        backgroundColor: ksoftGreenColor,
         automaticallyImplyLeading: false,
         title: const Text(
           'Soil Info',
@@ -79,103 +80,125 @@ class _SoilInfoState extends State<SoilInfo> {
               fontWeight: FontWeight.bold,
               color: kBlackColor),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.send,
+              size: 30,
+              color: kBlackColor,
+            ),
+            onPressed: showPrecautions,
+          ),
+        ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            InfoCard(
-              color: kInfoPageColor,
-              tanim: 'İklim',
-              aciklama: climate,
-            ),
-            InfoCard(
-              color: kWhiteColor,
-              tanim: "Toprak Bünyesi",
-              aciklama: soilType,
-            ),
-            InfoCard(
-              color: kInfoPageColor,
-              tanim: "Toprak PH",
-              aciklama: soilPH,
-            ),
-            InfoCard(
-              color: kWhiteColor,
-              tanim: "Tuzluluk Oranı",
-              aciklama: salinity,
-            ),
-            InfoCard(
-              color: kInfoPageColor,
-              tanim: "Kireç Kapsamı",
-              aciklama: kirecKapsami,
-            ),
-            InfoCard(
-              color: kWhiteColor,
-              tanim: "Organik Madde",
-              aciklama: organicMadde,
-            ),
-            InfoCard(
-              color: kInfoPageColor,
-              tanim: "Toplam Azot",
-              aciklama: toplamAzot,
-            ),
-            InfoCard(
-              color: kWhiteColor,
-              tanim: "fosfor",
-              aciklama: fosfor,
-            ),
-            InfoCard(
-              color: kInfoPageColor,
-              tanim: "kalsiyum",
-              aciklama: kalsiyum,
-            ),
-            InfoCard(
-              color: kWhiteColor,
-              tanim: "magnezyum",
-              aciklama: magnezyum,
-            ),
-            InfoCard(
-              color: kInfoPageColor,
-              tanim: "Sodyum",
-              aciklama: sodyum,
-            ),
-            InfoCard(
-              color: kWhiteColor,
-              tanim: "Potasyum",
-              aciklama: potasyum,
-            ),
-            InfoCard(
-              color: kInfoPageColor,
-              tanim: "Demir",
-              aciklama: demir,
-            ),
-            InfoCard(
-              color: kWhiteColor,
-              tanim: "Bakır",
-              aciklama: bakir,
-            ),
-            InfoCard(
-              color: kInfoPageColor,
-              tanim: "Çinko",
-              aciklama: cinko,
-            ),
-            InfoCard(
-              color: kWhiteColor,
-              tanim: "Mangan",
-              aciklama: mangan,
-            ),
-            InfoCard(
-              color: kInfoPageColor,
-              tanim: "Bor",
-              aciklama: bor,
-            ),
-          ],
-        ),
+      /* extendBody: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: kGreenColor,
+        foregroundColor: Colors.white,
+        elevation: 5,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.camera_alt),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(40.0, 0, 40, 12.0),
-        child: CustomTextButton(
-          onPress: showPrecautions, // showPrecautions fonksiyonunu bağlayın
+      bottomNavigationBar: const CustomButtomAppBar(), */
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              InfoCard(
+                color: kInfoPageColor,
+                tanim: 'İklim',
+                aciklama: climate,
+              ),
+              InfoCard(
+                color: ksoftGreenColor,
+                tanim: "Toprak Bünyesi",
+                aciklama: soilType,
+              ),
+              InfoCard(
+                color: kInfoPageColor,
+                tanim: "Toprak PH",
+                aciklama: soilPH,
+              ),
+              InfoCard(
+                color: ksoftGreenColor,
+                tanim: "Tuzluluk Oranı",
+                aciklama: salinity,
+              ),
+              InfoCard(
+                color: kInfoPageColor,
+                tanim: "Kireç Kapsamı",
+                aciklama: kirecKapsami,
+              ),
+              InfoCard(
+                color: ksoftGreenColor,
+                tanim: "Organik Madde",
+                aciklama: organicMadde,
+              ),
+              InfoCard(
+                color: kInfoPageColor,
+                tanim: "Toplam Azot",
+                aciklama: toplamAzot,
+              ),
+              InfoCard(
+                color: ksoftGreenColor,
+                tanim: "fosfor",
+                aciklama: fosfor,
+              ),
+              InfoCard(
+                color: kInfoPageColor,
+                tanim: "kalsiyum",
+                aciklama: kalsiyum,
+              ),
+              InfoCard(
+                color: ksoftGreenColor,
+                tanim: "magnezyum",
+                aciklama: magnezyum,
+              ),
+              InfoCard(
+                color: kInfoPageColor,
+                tanim: "Sodyum",
+                aciklama: sodyum,
+              ),
+              InfoCard(
+                color: ksoftGreenColor,
+                tanim: "Potasyum",
+                aciklama: potasyum,
+              ),
+              InfoCard(
+                color: kInfoPageColor,
+                tanim: "Demir",
+                aciklama: demir,
+              ),
+              InfoCard(
+                color: ksoftGreenColor,
+                tanim: "Bakır",
+                aciklama: bakir,
+              ),
+              InfoCard(
+                color: kInfoPageColor,
+                tanim: "Çinko",
+                aciklama: cinko,
+              ),
+              InfoCard(
+                color: ksoftGreenColor,
+                tanim: "Mangan",
+                aciklama: mangan,
+              ),
+              InfoCard(
+                color: kInfoPageColor,
+                tanim: "Bor",
+                aciklama: bor,
+              ),
+              const InfoCard(
+                color: ksoftGreenColor,
+                tanim: "",
+                aciklama: "",
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -229,32 +252,6 @@ class _SoilInfoState extends State<SoilInfo> {
   }
 }
 
-class CustomTextButton extends StatelessWidget {
-  final VoidCallback onPress; // Parametre olarak bir fonksiyon tanımlayın
-
-  const CustomTextButton({
-    super.key,
-    required this.onPress, // Kurucuda parametre olarak alın
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPress,
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(kGreenColor),
-        minimumSize: MaterialStateProperty.all<Size>(const Size(250, 50)),
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-            const EdgeInsets.all(10)),
-      ),
-      child: const Text(
-        'SUBMIT',
-        style: TextStyle(fontSize: 18, color: kWhiteColor),
-      ),
-    );
-  }
-}
-
 class InfoCard extends StatelessWidget {
   final Color color;
   final String tanim;
@@ -281,7 +278,7 @@ class InfoCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  '$tanim:',
+                  tanim,
                   style: const TextStyle(color: kBoldGreenColor, fontSize: 15),
                 ),
               ),

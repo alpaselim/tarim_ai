@@ -6,7 +6,7 @@ import 'package:tarim_ai/Services/api_service.dart';
 class MainController extends GetxController {
   @override
   void onInit() async {
-    super.onInit(); // Önerilen: super.onInit()'i en başa alın.
+    super.onInit();
 
     final FieldController fieldController = Get.find<FieldController>();
 

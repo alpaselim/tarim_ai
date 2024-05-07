@@ -1,13 +1,12 @@
 import 'dart:convert';
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Controllers/main_controller.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/app_service.dart';
+import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart';
 
 class FieldInfo extends StatefulWidget {
   const FieldInfo({super.key});
@@ -42,7 +41,6 @@ class _FieldInfoState extends State<FieldInfo> {
     }
 
     String productName = fieldController.productName.value ?? "";
-    var currentWeather = mainController.currentWeatherData;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kWhiteColor,
@@ -54,7 +52,28 @@ class _FieldInfoState extends State<FieldInfo> {
               fontWeight: FontWeight.bold,
               color: kBlackColor),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.send,
+              size: 30,
+              color: kBlackColor,
+            ),
+            onPressed: showPrecautions,
+          ),
+        ],
       ),
+      /*  extendBody: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: kGreenColor,
+        foregroundColor: kWhiteColor,
+        elevation: 5,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.camera_alt),
+      ),
+      bottomNavigationBar: const CustomButtomAppBar(), */
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -110,12 +129,12 @@ class _FieldInfoState extends State<FieldInfo> {
           ),
         ],
       ),
-      bottomNavigationBar: Padding(
+      /*  bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(40.0, 0, 40, 12.0),
         child: CustomTextButton(
           onPress: showPrecautions, // showPrecautions fonksiyonunu bağlayın
         ),
-      ),
+      ), */
     );
   }
 
@@ -219,7 +238,7 @@ class InfoCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  '$tanim:',
+                  tanim,
                   style: const TextStyle(color: kBoldGreenColor, fontSize: 15),
                 ),
               ),

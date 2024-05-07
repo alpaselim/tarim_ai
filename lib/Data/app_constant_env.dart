@@ -14,6 +14,8 @@ const String mapSmplePath = "/MapSmple";
 const String mapBarPath = "/MapBar";
 const String createFieldPath = "/CreateField";
 const String selectedFieldPath = "/SelectedField";
+const String userScreenPath = "/UserScreen";
+const String homePath = "/homePath";
 
 // datalar
 

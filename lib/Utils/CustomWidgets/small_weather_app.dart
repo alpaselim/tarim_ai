@@ -23,30 +23,36 @@ class _SmallWeatherAppState extends State<SmallWeatherApp> {
 
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context, weatherAppPath),
-      child: Obx(
-        () => controller.isloaded.value == true
-            ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/sunny.jpg'), // Resminizin yolu
-                      fit: BoxFit.cover, // Resmi container'a sığdırmak için
-                    ),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(50.0),
-                      bottomRight: Radius.circular(50.0),
-                      topLeft: Radius.circular(40.0),
-                      topRight: Radius.circular(40.0),
-                    ),
-                  ),
-                  padding: const EdgeInsets.all(12),
-                  child: newMethod(controller),
-                ),
-              )
-            : const Center(
-                child: CircularProgressIndicator(),
+      child: Stack(
+        children: [
+          Container(
+            width: double.infinity, // Container'ı tam genişlikte ayarla
+            height: 175.0, // Sabit yükseklik belirle
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 202, 218, 215),
+              borderRadius: BorderRadius.all(Radius.circular(25)),
+            ),
+          ),
+          Positioned.fill(
+            // Stack içinde doldur
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Obx(
+                () => controller.isloaded.value == true
+                    ? SizedBox(
+                        // Sabit boyutu korumak için bu containerı kullan
+                        width: double.infinity,
+                        height: 150.0,
+                        child: newMethod(
+                            controller), // Yükleme tamamlandığında içeriği göster
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(),
+                      ),
               ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -48,7 +48,8 @@ class AppService {
 
   Future<Map<String, dynamic>> sendRequestForWeed(String weedName) async {
     const String apiURL = 'https://api.openai.com/v1/chat/completions';
-    const String apiKey = "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";
+    const String apiKey =
+        "sk-proj-gB6D4Pk2yBOtFH6BWlnQT3BlbkFJ5NL71otjMo0AWeSXexJR";
 
     final response = await http.post(
       Uri.parse(apiURL),
@@ -80,7 +81,8 @@ class AppService {
 
   Future<Map<String, dynamic>> sendRequestForInsect(String insectName) async {
     const String apiURL = 'https://api.openai.com/v1/chat/completions';
-    const String apiKey = "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";
+    const String apiKey =
+        "sk-proj-gB6D4Pk2yBOtFH6BWlnQT3BlbkFJ5NL71otjMo0AWeSXexJR";
 
     final response = await http.post(
       Uri.parse(apiURL),
@@ -113,7 +115,8 @@ class AppService {
   Future<Map<String, dynamic>> sendRequestForIrrigation(
       String fieldInfo) async {
     const String apiURL = 'https://api.openai.com/v1/chat/completions';
-    const String apiKey = "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";
+    const String apiKey =
+        "sk-proj-gB6D4Pk2yBOtFH6BWlnQT3BlbkFJ5NL71otjMo0AWeSXexJR";
 
     final response = await http.post(
       Uri.parse(apiURL),
@@ -146,7 +149,8 @@ class AppService {
   Future<Map<String, dynamic>> sendRequestForSoilAnalysis(
       String soilInfo) async {
     const String apiURL = 'https://api.openai.com/v1/chat/completions';
-    const String apiKey = "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";
+    const String apiKey =
+        "sk-proj-gB6D4Pk2yBOtFH6BWlnQT3BlbkFJ5NL71otjMo0AWeSXexJR";
 
     final response = await http.post(
       Uri.parse(apiURL),

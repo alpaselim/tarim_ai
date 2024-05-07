@@ -8,6 +8,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/app_service.dart';
+import 'package:tarim_ai/Services/snackbar_service.dart';
+import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart';
 
 class WeedDetectionPage extends StatefulWidget {
   const WeedDetectionPage({super.key});
@@ -42,7 +44,7 @@ class _MyHomePageState extends State<WeedDetectionPage> {
       weedName =
           await apiService.sendImageToGPT4VisionForWeed(image: _selectedImage!);
     } catch (error) {
-      _showErrorSnackBar(error);
+      snackbarService.showWarningSnackBar(error.toString());
     } finally {
       setState(() {
         detecting = false;
@@ -99,6 +101,18 @@ class _MyHomePageState extends State<WeedDetectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /* extendBody: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: kGreenColor,
+        foregroundColor: Colors.white,
+        elevation: 5,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.camera_alt),
+      ),
+      bottomNavigationBar: const CustomButtomAppBar(), */
+
       body: Column(
         children: <Widget>[
           const SizedBox(height: 20),
@@ -187,7 +201,7 @@ class _MyHomePageState extends State<WeedDetectionPage> {
           _selectedImage == null
               ? SizedBox(
                   height: MediaQuery.of(context).size.height * 0.4,
-                  child: Image.asset('assets/weed_detection.jpg'),
+                  child: Image.asset('assets/weed_detection.png'),
                 )
               : Expanded(
                   child: Container(
@@ -213,7 +227,7 @@ class _MyHomePageState extends State<WeedDetectionPage> {
                 : Container(
                     width: double.infinity,
                     padding:
-                        const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                        const EdgeInsets.only(bottom: 60, left: 20, right: 20),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: themeColor,

@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Navigator.pushNamed(
                 // ignore: use_build_context_synchronously
                 context,
-                homeScreenPath,
+                homePath,
               );
             } else {
               snackbarService.showWarningSnackBar(

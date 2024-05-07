@@ -7,6 +7,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/app_service.dart';
+import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart';
 
 class InsectDetectionPage extends StatefulWidget {
   const InsectDetectionPage({super.key});
@@ -119,6 +120,17 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      /* floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: kGreenColor,
+        foregroundColor: Colors.white,
+        elevation: 5,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.camera_alt),
+      ),
+      bottomNavigationBar: const CustomButtomAppBar(), */
       body: Column(
         children: <Widget>[
           const SizedBox(height: 20),
@@ -235,7 +247,7 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
                 : Container(
                     width: double.infinity,
                     padding:
-                        const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                        const EdgeInsets.only(bottom: 60, left: 20, right: 20),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: themeColor,
