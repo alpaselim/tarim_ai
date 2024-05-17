@@ -7,7 +7,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/app_service.dart';
-import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart';
 
 class InsectDetectionPage extends StatefulWidget {
   const InsectDetectionPage({super.key});
@@ -50,6 +49,7 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
     }
   }
 
+  // ignore: unused_element
   _showPrecautions() async {
     setState(() {
       precautionLoading = true;

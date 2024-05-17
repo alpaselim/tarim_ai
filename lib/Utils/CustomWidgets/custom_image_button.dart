@@ -6,26 +6,34 @@ class ImageButton extends StatelessWidget {
   final Color backgroundColor;
 
   const ImageButton({
-    super.key,
+    Key? key,
     required this.onPressed,
     required this.image,
     required this.backgroundColor,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: 50.0, // Düğmenin genişliği
+        width: MediaQuery.of(context).size.width * 0.14, // Düğmenin genişliği
         height: 50.0, // Düğmenin yüksekliği
         decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
           color: backgroundColor,
           borderRadius: BorderRadius.circular(8),
-          image: DecorationImage(
-            image: image,
-            fit: BoxFit.cover,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(
+              8.0), // Resim ile düğme arasına padding ekleyin
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: image,
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
         ),
       ),

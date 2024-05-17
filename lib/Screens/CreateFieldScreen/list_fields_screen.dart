@@ -48,6 +48,7 @@ class _ListFieldsState extends State<ListFields> {
                 margin: const EdgeInsets.all(8.0),
                 child: ListTile(
                   leading: const CircleAvatar(
+                    backgroundColor: klightGreenColor,
                     backgroundImage: AssetImage('assets/Agri_Grow_Logo.png'),
                   ),
                   title: Text(field.fieldName ?? "Bilinmeyen Tarla"),

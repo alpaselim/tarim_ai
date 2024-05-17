@@ -9,7 +9,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/app_service.dart';
 import 'package:tarim_ai/Services/snackbar_service.dart';
-import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart';
 
 class WeedDetectionPage extends StatefulWidget {
   const WeedDetectionPage({super.key});
@@ -101,18 +100,6 @@ class _MyHomePageState extends State<WeedDetectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /* extendBody: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: kGreenColor,
-        foregroundColor: Colors.white,
-        elevation: 5,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.camera_alt),
-      ),
-      bottomNavigationBar: const CustomButtomAppBar(), */
-
       body: Column(
         children: <Widget>[
           const SizedBox(height: 20),

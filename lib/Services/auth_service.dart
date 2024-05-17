@@ -51,6 +51,19 @@ class AuthService {
       (route) => false,
     );
   }
+
+  Future<String?> getCurrentUserEmail() async {
+    try {
+      User? user = _auth.currentUser;
+      if (user != null) {
+        return user.email;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
 }
 
 final AuthService authService = AuthService();

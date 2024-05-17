@@ -17,14 +17,38 @@ class StreamService {
 // Create a CollectionReference called users that references the firestore collection
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-  Stream<QuerySnapshot<UserModel>> callUsers() {
-    var currentUsers = users
-        .withConverter<UserModel>(
-          fromFirestore: (snapshot, _) => UserModel.fromJson(snapshot.data()!),
-          toFirestore: (movie, _) => movie.toJson(),
-        )
-        .snapshots();
-    return currentUsers;
+  /*  Stream<List<String>> getImageUrlsStream() {
+    
+    try {
+      // Firestore veritabanından fotoğraf URL'lerini dinamik olarak al
+       String? currentUserUid = FirebaseAuth.instance.currentUser?.uid;
+      return FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUserUid) // Kullanıcıya göre belirli bir belgeyi hedefle
+          .collection('gallery')
+          .snapshots()
+          .map((snapshot) => snapshot.docs.map((doc) => doc.data()['url'] as String).toList());
+    } catch (e) {
+      print('Error fetching image URLs from Firestore: $e');
+      return Stream.value([]); // Boş bir liste döndürür
+    }
+  } */
+
+  Stream<DocumentSnapshot<UserModel>> getCurrentUser() {
+    String? currentUserUid = FirebaseAuth.instance.currentUser?.uid;
+    if (currentUserUid != null) {
+      return users
+          .doc(currentUserUid)
+          .withConverter<UserModel>(
+            fromFirestore: (snapshot, _) =>
+                UserModel.fromJson(snapshot.data()!),
+            toFirestore: (movie, _) => movie.toJson(),
+          )
+          .snapshots();
+    } else {
+      // Eğer mevcut kullanıcı UID'si yoksa, boş bir stream döndürürüz
+      return const Stream.empty();
+    }
   }
 
   Stream<QuerySnapshot<SoilAnalysis>> getCurrentUserFields() {

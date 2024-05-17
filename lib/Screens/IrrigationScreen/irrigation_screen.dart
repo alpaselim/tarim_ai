@@ -4,7 +4,6 @@ import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Screens/IrrigationScreen/field_info.dart';
 import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Services/app_service.dart';
-import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart'; // FieldController import edildi
 
 class IrrigationScreen extends StatefulWidget {
   const IrrigationScreen({Key? key}) : super(key: key);
@@ -35,17 +34,6 @@ class _IrrigationScreenState extends State<IrrigationScreen> {
               color: kWhiteColor),
         ),
       ),
-      /* extendBody: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: kGreenColor,
-        foregroundColor: Colors.white,
-        elevation: 5,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.camera_alt),
-      ),
-      bottomNavigationBar: const CustomButtomAppBar(), */
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -101,10 +89,9 @@ class _IrrigationScreenState extends State<IrrigationScreen> {
                 );
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(kGreenColor),
-                minimumSize:
-                    MaterialStateProperty.all<Size>(const Size(250, 50)),
-                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                backgroundColor: WidgetStateProperty.all<Color>(kGreenColor),
+                minimumSize: WidgetStateProperty.all<Size>(const Size(250, 50)),
+                padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                     const EdgeInsets.all(10)),
               ),
               child: const Text(

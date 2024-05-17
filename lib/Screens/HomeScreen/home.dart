@@ -1,7 +1,11 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
+import 'package:tarim_ai/Screens/GalleryScreen/gallery_screen.dart';
 import 'package:tarim_ai/Screens/HomeScreen/home_screen.dart';
 import 'package:tarim_ai/Screens/UserScreen/user_screen.dart';
+import 'package:tarim_ai/Services/firestore_service.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,6 +19,7 @@ class _HomeState extends State<Home> {
   final List<Widget> screens = [const HomeScreen(), const UserScreen()];
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = const HomeScreen();
+  File? _selectedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +29,21 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: kGreenColor,
-        foregroundColor: Colors.white,
+        foregroundColor: kWhiteColor,
         elevation: 5,
         shape: const CircleBorder(),
-        child: const Icon(Icons.camera_alt),
+        child: InkWell(
+          onTap: () {
+            _pickImage(ImageSource.camera);
+          },
+          child: const Icon(Icons.camera_alt),
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         height: 50,
         color: kGreenColor,
         shape: const CircularNotchedRectangle(),
-        notchMargin: 10,
+        notchMargin: 5,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -44,7 +54,7 @@ class _HomeState extends State<Home> {
                   minWidth: 40,
                   onPressed: () {
                     setState(() {
-                      currentScreen = HomeScreen();
+                      currentScreen = const HomeScreen();
                       currentTab = 0;
                     });
                   },
@@ -62,7 +72,7 @@ class _HomeState extends State<Home> {
                   minWidth: 40,
                   onPressed: () {
                     setState(() {
-                      currentScreen = UserScreen();
+                      currentScreen = const UserScreen();
                       currentTab = 1;
                     });
                   },
@@ -85,7 +95,7 @@ class _HomeState extends State<Home> {
                   minWidth: 40,
                   onPressed: () {
                     setState(() {
-                      currentScreen = HomeScreen();
+                      currentScreen = const GalleryScreen();
                       currentTab = 2;
                     });
                   },
@@ -103,7 +113,7 @@ class _HomeState extends State<Home> {
                   minWidth: 40,
                   onPressed: () {
                     setState(() {
-                      currentScreen = UserScreen();
+                      currentScreen = const UserScreen();
                       currentTab = 3;
                     });
                   },
@@ -123,5 +133,26 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  /*  Future<void> saveUserInfo() async {
+    String newName = nameController.text;
+    String newPhoneNumber = phoneNumberController.text;
+    String imageUrl = await fireStoreService.uploadImage(_selectedImage!);
+    fireStoreService.editUserProfile(newName, newPhoneNumber, imageUrl);
+  } */
+
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: source, imageQuality: 50);
+
+    if (pickedFile != null) {
+      setState(() {
+        _selectedImage = File(pickedFile.path);
+      });
+      String imageUrl =
+          await fireStoreService.uploadGalleryImage(_selectedImage!);
+      fireStoreService.addImageUrlToFirestore(imageUrl);
+    }
   }
 }

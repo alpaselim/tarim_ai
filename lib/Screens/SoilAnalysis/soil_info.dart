@@ -6,7 +6,6 @@ import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Controllers/main_controller.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/app_service.dart';
-import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart';
 
 class SoilInfo extends StatefulWidget {
   const SoilInfo({super.key});

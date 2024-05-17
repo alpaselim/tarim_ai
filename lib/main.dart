@@ -18,7 +18,6 @@ import 'package:tarim_ai/Screens/SignUpScreen/signup_screen.dart';
 import 'package:tarim_ai/Screens/SplashScreen/splash_screen.dart';
 import 'package:tarim_ai/Screens/UserScreen/user_screen.dart';
 import 'package:tarim_ai/Screens/WelcomeScreen/welcome_screen.dart';
-import 'package:tarim_ai/Utils/CustomWidgets/weather_app.dart';
 import 'package:tarim_ai/firebase_options.dart';
 
 void main() async {
@@ -65,10 +64,6 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(
     name: homeScreenPath,
     page: () => const HomeScreen(),
-  ),
-  GetPage(
-    name: weatherAppPath,
-    page: () => const WeatherApp(),
   ),
   GetPage(
     name: mapSamplePath,

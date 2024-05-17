@@ -24,6 +24,8 @@ const kLargeCardColor = Color.fromARGB(255, 246, 255, 200);
 const kInfoPageColor = Color.fromARGB(255, 209, 241, 231);
 const kBoldGreenColor = Color.fromARGB(255, 42, 92, 75);
 const kMojitoBreezeColor = Color.fromARGB(255, 251, 255, 244);
+const kCustomGreyColor = Color.fromARGB(255, 217, 217, 217);
+
 Color themeColor = const Color(0xFF5bc787);
 Color textColor = Colors.white;
 ThemeData appTheme = ThemeData(

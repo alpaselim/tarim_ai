@@ -6,7 +6,6 @@ import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Controllers/main_controller.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/app_service.dart';
-import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart';
 
 class FieldInfo extends StatefulWidget {
   const FieldInfo({super.key});
@@ -199,9 +198,9 @@ class CustomTextButton extends StatelessWidget {
     return TextButton(
       onPressed: onPress,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(kGreenColor),
-        minimumSize: MaterialStateProperty.all<Size>(const Size(250, 50)),
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+        backgroundColor: WidgetStateProperty.all<Color>(kGreenColor),
+        minimumSize: WidgetStateProperty.all<Size>(const Size(250, 50)),
+        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
             const EdgeInsets.all(10)),
       ),
       child: const Text(

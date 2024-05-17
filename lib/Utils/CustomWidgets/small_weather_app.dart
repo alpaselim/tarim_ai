@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:tarim_ai/Controllers/main_controller.dart';
-import 'package:tarim_ai/Data/app_constant_env.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Data/models/current_weather_model.dart';
 import 'package:tarim_ai/Data/models/hourly_weather_model.dart';
 import 'package:tarim_ai/Data/strings.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class SmallWeatherApp extends StatefulWidget {
   const SmallWeatherApp({super.key});
@@ -21,39 +19,36 @@ class _SmallWeatherAppState extends State<SmallWeatherApp> {
   Widget build(BuildContext context) {
     var controller = Get.put(MainController());
 
-    return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, weatherAppPath),
-      child: Stack(
-        children: [
-          Container(
-            width: double.infinity, // Container'ı tam genişlikte ayarla
-            height: 175.0, // Sabit yükseklik belirle
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 202, 218, 215),
-              borderRadius: BorderRadius.all(Radius.circular(25)),
+    return Stack(
+      children: [
+        Container(
+          width: double.infinity, // Container'ı tam genişlikte ayarla
+          height: 175.0, // Sabit yükseklik belirle
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 202, 218, 215),
+            borderRadius: BorderRadius.all(Radius.circular(25)),
+          ),
+        ),
+        Positioned.fill(
+          // Stack içinde doldur
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Obx(
+              () => controller.isloaded.value == true
+                  ? SizedBox(
+                      // Sabit boyutu korumak için bu containerı kullan
+                      width: double.infinity,
+                      height: 150.0,
+                      child: newMethod(
+                          controller), // Yükleme tamamlandığında içeriği göster
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(),
+                    ),
             ),
           ),
-          Positioned.fill(
-            // Stack içinde doldur
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Obx(
-                () => controller.isloaded.value == true
-                    ? SizedBox(
-                        // Sabit boyutu korumak için bu containerı kullan
-                        width: double.infinity,
-                        height: 150.0,
-                        child: newMethod(
-                            controller), // Yükleme tamamlandığında içeriği göster
-                      )
-                    : const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -71,12 +66,15 @@ class _SmallWeatherAppState extends State<SmallWeatherApp> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    "${data.name}"
-                        .text
-                        .size(20)
-                        .letterSpacing(1)
-                        .color(kWhiteColor)
-                        .make(),
+                    Text(
+                      "${data.name}",
+                      style: const TextStyle(
+                        fontSize: 20,
+                        letterSpacing: 1,
+                        color:
+                            kWhiteColor, // kWhiteColor sabitini buraya ekleyin
+                      ),
+                    ),
                     Image.asset(
                       "assets/weather/${data.weather![0].icon}.png",
                       width: 25,

@@ -85,9 +85,9 @@ class MapSmpleState extends State<MapSmple> {
                       Get.to(() => const CreateField());
                     },
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(
+                      foregroundColor: WidgetStateProperty.all<Color>(
                           kWhiteColor), // Yazı rengi kırmızı
-                      backgroundColor: MaterialStateProperty.all<Color>(
+                      backgroundColor: WidgetStateProperty.all<Color>(
                           kRedColor), // Arka plan rengi beyaz
                     ),
                     child: const Text(

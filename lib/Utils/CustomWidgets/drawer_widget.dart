@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Screens/HomeScreen/home.dart';
-import 'package:tarim_ai/Screens/HomeScreen/home_screen.dart';
 import 'package:tarim_ai/Screens/UserScreen/user_screen.dart';
 import 'package:tarim_ai/Services/auth_service.dart';
 

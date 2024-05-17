@@ -171,6 +171,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 name: fullnameController.text,
                 email: emailController.text,
                 password: passwordController.text,
+                phoneNumber: '',
                 uid: user.uid,
                 profilePicture: '',
               );
