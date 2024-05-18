@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Services/firestore_service.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:tarim_ai/Services/stream_service.dart';
 
 class GalleryScreen extends StatefulWidget {
   const GalleryScreen({Key? key}) : super(key: key);
@@ -11,15 +13,8 @@ class GalleryScreen extends StatefulWidget {
 }
 
 class _GalleryScreenState extends State<GalleryScreen> {
-  late Future<List<String>> _imageUrlsFuture;
   final List<String> selectedImages = [];
   bool isSelectionMode = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _imageUrlsFuture = fireStoreService.getImageUrlsFromGallery();
-  }
 
   void _onImageTap(String imageUrl) {
     if (isSelectionMode) {
@@ -42,12 +37,6 @@ class _GalleryScreenState extends State<GalleryScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.network(imageUrl),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Close'),
-                ),
               ],
             ),
           );
@@ -70,14 +59,18 @@ class _GalleryScreenState extends State<GalleryScreen> {
     });
   }
 
-  Future<void> _deleteImage(String imageUrl) async {
-    // Firestore'dan belgeyi silme işlemi
-    // Burada imageUrl kullanarak ilgili belgeyi bulun ve silin
+  void _shareImage(String imageUrl) {
+    Share.share(imageUrl);
   }
 
-  void _shareImage(String imageUrl) {
-    // Paylaşma işlemi
-    Share.share(imageUrl);
+  void _deleteSelectedImages() async {
+    for (var imageUrl in selectedImages) {
+      await fireStoreService.deleteImage(imageUrl);
+    }
+    setState(() {
+      selectedImages.clear();
+      isSelectionMode = false;
+    });
   }
 
   @override
@@ -90,15 +83,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
             ? [
                 IconButton(
                   icon: const Icon(Icons.delete),
-                  onPressed: () {
-                    for (var imageUrl in selectedImages) {
-                      _deleteImage(imageUrl);
-                    }
-                    setState(() {
-                      selectedImages.clear();
-                      isSelectionMode = false;
-                    });
-                  },
+                  onPressed: _deleteSelectedImages,
                 ),
                 IconButton(
                   icon: const Icon(Icons.share),
@@ -111,15 +96,18 @@ class _GalleryScreenState extends State<GalleryScreen> {
               ]
             : null,
       ),
-      body: FutureBuilder<List<String>>(
-        future: _imageUrlsFuture,
+      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: streamService.getCurrentUserGallery(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
-            final List<String> imageUrls = snapshot.data ?? [];
+            final List<String> imageUrls = snapshot.data?.docs
+                    .map((doc) => doc.data()['url'] as String)
+                    .toList() ??
+                [];
             return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,

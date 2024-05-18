@@ -25,6 +25,40 @@ class FireStoreService {
 
   String? userId = FirebaseAuth.instance.currentUser?.uid;
 
+  Future<void> deleteImage(String imageUrl) async {
+    try {
+      // Firestore'dan galerideki ilgili belgeyi bul
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(currentUser?.uid) // Mevcut kullanıcının belgesine erişim
+              .collection('gallery')
+              .where('url', isEqualTo: imageUrl)
+              .get();
+
+      // Belge varsa, Firestore'dan belgeyi ve Firebase Storage'dan resmi sil
+      if (querySnapshot.docs.isNotEmpty) {
+        final docId = querySnapshot.docs.first.id; // İlk belgenin ID'sini al
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(currentUser?.uid)
+            .collection('gallery')
+            .doc(docId)
+            .delete(); // Firestore'dan belgeyi sil
+
+        // Firebase Storage'dan resmi sil
+        final Reference storageRef =
+            FirebaseStorage.instance.refFromURL(imageUrl);
+        await storageRef.delete();
+      } else {
+        // Resim bulunamadı
+      }
+    } catch (e) {
+      // Resim silinirken bir hata oluştu
+    }
+  }
+
+  // gallery Collection
   Future<List<String>> getImageUrlsFromGallery() async {
     try {
       // Firestore veritabanından fotoğraf URL'lerini al
@@ -47,6 +81,7 @@ class FireStoreService {
     }
   }
 
+  // Profil picture
   Future<String> uploadImage(File imageFile) async {
     try {
       String imagePath = 'images/${DateTime.now()}.png'; // Yüklenecek yol

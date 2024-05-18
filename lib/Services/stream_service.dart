@@ -34,6 +34,14 @@ class StreamService {
     }
   } */
 
+  Stream<QuerySnapshot<Map<String, dynamic>>> getCurrentUserGallery() {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection('gallery')
+        .snapshots();
+  }
+
   Stream<DocumentSnapshot<UserModel>> getCurrentUser() {
     String? currentUserUid = FirebaseAuth.instance.currentUser?.uid;
     if (currentUserUid != null) {
