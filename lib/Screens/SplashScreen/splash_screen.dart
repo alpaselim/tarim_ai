@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Navigator.pushReplacementNamed(context, loginScreenPath);
           } else {
             // Kullanıcı oturum açmışsa, ana ekrana yönlendir
-            Navigator.pushReplacementNamed(context, homeScreenPath);
+            Navigator.pushReplacementNamed(context, homePath);
           }
         }
       });

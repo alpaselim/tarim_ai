@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Data/models/user_model.dart';
+import 'package:tarim_ai/Screens/LoginScreen/login_screen.dart';
 import 'package:tarim_ai/Services/firestore_service.dart';
 import 'package:tarim_ai/Services/snackbar_service.dart';
 import 'package:tarim_ai/Services/stream_service.dart';
@@ -20,7 +21,7 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
-  String? currentUserProfilePicture;
+  String profilePicture = '';
 
   // final currentUser = FirebaseAuth.instance.currentUser;
   String? currentUserEmail;
@@ -38,10 +39,12 @@ class _EditProfileState extends State<EditProfile> {
         // Belge mevcut olduğunda kullanıcı bilgilerini alın
         UserModel user = snapshot.data()!;
         // Kullanıcı bilgilerini al ve ilgili TextEditingController'ların içine yerleştir
+        setState(() {
+          profilePicture = user.profilePicture ?? '';
+        });
         nameController.text = user.name ?? '';
         emailController.text = user.email ?? '';
         phoneNumberController.text = user.phoneNumber ?? '';
-        currentUserProfilePicture = user.profilePicture ?? '';
       } else {
         // Belge mevcut değilse buraya düşebilirsiniz
         //  print('Belge mevcut değil');
@@ -51,6 +54,13 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
+    ImageProvider<Object> backgroundImage;
+
+    if (profilePicture != '') {
+      backgroundImage = NetworkImage(profilePicture);
+    } else {
+      backgroundImage = const AssetImage('assets/avatar_image.png');
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -72,11 +82,7 @@ class _EditProfileState extends State<EditProfile> {
                   top: 140,
                   child: CircleAvatar(
                     radius: 60,
-                    backgroundImage: // Seçilen resmi göster
-                        currentUserProfilePicture != null
-                            ? NetworkImage(currentUserProfilePicture!)
-                            : const NetworkImage(
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8AJM9wkP__z2M-hovSAWcTb_9XJ6smy3NKw&s'),
+                    backgroundImage: backgroundImage,
                   ),
                 ),
                 Positioned(
@@ -144,20 +150,53 @@ class _EditProfileState extends State<EditProfile> {
                   const SizedBox(height: 20),
                   userCard("Phone no", phoneNumberController),
                   const SizedBox(height: 30),
-                  Container(
-                    width: MediaQuery.of(context).size.width - 80,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: kRedColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const Center(
-                        child: Text(
-                      "Delete Account",
-                      style: TextStyle(
-                        fontSize: 20,
+                  InkWell(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width - 80,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: kRedColor,
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    )),
+                      child: const Center(
+                          child: Text(
+                        "Delete Account",
+                        style: TextStyle(fontSize: 20, color: kWhiteColor),
+                      )),
+                    ),
+                    onTap: () {
+                      /* await fireStoreService.deleteUserAccount();
+                      Get.to(() => const LoginScreen()); */
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Delete your Account?'),
+                            content: const Text(
+                              "Are you sure you want to delete your account? This action is irreversible and all your data will be permanently deleted.",
+                            ),
+                            actions: [
+                              TextButton(
+                                child: const Text('Cancel'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              TextButton(
+                                child: const Text(
+                                  'Delete',
+                                ),
+                                onPressed: () async {
+                                  await fireStoreService.deleteUserAccount();
+                                  Get.offAll(() => const LoginScreen());
+                                  // Call the delete account function
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 20,
@@ -167,15 +206,13 @@ class _EditProfileState extends State<EditProfile> {
                       width: MediaQuery.of(context).size.width - 80,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: kGreenColor,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: const Center(
                           child: Text(
                         "Save Changes",
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
+                        style: TextStyle(fontSize: 20, color: kWhiteColor),
                       )),
                     ),
                     onTap: () {

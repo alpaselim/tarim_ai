@@ -37,11 +37,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.6
   # Internet api işlemleri
-  http: ^1.2.1
+  http: ^0.13.6
   #firebase
   firebase_core: ^2.24.1
   firebase_auth: ^4.15.3
   cloud_firestore: ^4.13.6
+  firebase_storage: ^11.7.5
   #veri depolama işlemleri için
   get_storage: ^2.1.1
   geolocator: ^10.1.0
@@ -56,9 +57,11 @@ dependencies:
   awesome_dialog: ^3.2.0
   flutter_spinkit: ^5.2.0
   image_picker: ^1.0.7
-  firebase_storage: ^11.7.5
+  #fotograflari paylasmak 
   share_plus: ^9.0.0
- 
+  #fotograflari cihaz galerisine kaydetmek icin
+  path_provider: ^2.0.11
+  gallery_saver: ^2.3.2
   
   
   

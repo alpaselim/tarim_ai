@@ -1,12 +1,43 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
+import 'package:tarim_ai/Data/models/user_model.dart';
 import 'package:tarim_ai/Screens/HomeScreen/home.dart';
 import 'package:tarim_ai/Screens/UserScreen/user_screen.dart';
 import 'package:tarim_ai/Services/auth_service.dart';
+import 'package:tarim_ai/Services/stream_service.dart';
 
-class DrawerWidget extends StatelessWidget {
+class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key});
+
+  @override
+  State<DrawerWidget> createState() => _DrawerWidgetState();
+}
+
+class _DrawerWidgetState extends State<DrawerWidget> {
+  String name = "";
+  String email = "";
+  String profilePicture = '';
+
+  @override
+  void initState() {
+    super.initState();
+    streamService
+        .getCurrentUser()
+        .listen((DocumentSnapshot<UserModel> snapshot) {
+      if (snapshot.exists) {
+        UserModel user = snapshot.data()!;
+        setState(() {
+          name = user.name ?? '';
+          email = user.email ?? '';
+          profilePicture = user.profilePicture ?? '';
+        });
+      } else {
+        //print('Belge mevcut değil');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +55,13 @@ class DrawerWidget extends StatelessWidget {
   }
 
   Widget buildHeader(BuildContext context) {
+    ImageProvider<Object> backgroundImage;
+
+    if (profilePicture != '') {
+      backgroundImage = NetworkImage(profilePicture);
+    } else {
+      backgroundImage = const AssetImage('assets/avatar_image.png');
+    }
     return Material(
       color: kGreenColor,
       child: InkWell(
@@ -38,20 +76,20 @@ class DrawerWidget extends StatelessWidget {
           color: kGreenColor,
           padding: EdgeInsets.only(
               top: 24 + MediaQuery.of(context).padding.top, bottom: 24),
-          child: const Column(
+          child: Column(
             children: [
               CircleAvatar(
-                radius: 52,
-                backgroundImage: NetworkImage(
-                    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fdefault-profile-picture&psig=AOvVaw1RT387640gj_8nk7CSVCUa&ust=1714826080434000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJCM7Yy_8YUDFQAAAAAdAAAAABAJ'),
+                radius: 60, // Çemberin yarıçapı
+                backgroundImage: backgroundImage,
+                // Arkaplan resmi
               ),
               SizedBox(height: 12),
               Text(
-                'Selim Alpa',
+                name,
                 style: TextStyle(fontSize: 22, color: kWhiteColor),
               ),
               Text(
-                'selimalpa@gmail.com',
+                email,
                 style: TextStyle(fontSize: 16, color: kWhiteColor),
               ),
             ],

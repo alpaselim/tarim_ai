@@ -56,7 +56,44 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ],
           ),
-          Image.asset('assets/group1.png'),
+          // Image.asset('assets/group1.png'),
+          const Column(
+            //mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Welcome to",
+                    style: TextStyle(
+                        color: kWhiteColor,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    width: 1,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    "TarımAI",
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 13, 255, 77),
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    width: 1,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.35,
+          ),
           Image.asset('assets/Group2.png'),
           CustomWelcomeButton(
             text: 'Start with Email',

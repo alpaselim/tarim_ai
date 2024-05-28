@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Data/models/user_model.dart';
+import 'package:tarim_ai/Screens/UserScreen/change_password.dart';
 import 'package:tarim_ai/Screens/UserScreen/edit_profile.dart';
 import 'package:tarim_ai/Services/stream_service.dart';
-import 'package:tarim_ai/Utils/CustomWidgets/custom_buttom_app_bar.dart';
+import 'package:tarim_ai/Utils/CustomWidgets/custom_bottom_app_bar.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({Key? key}) : super(key: key);
@@ -14,10 +16,11 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  final CustomButtomAppBar customButtomAppBar = const CustomButtomAppBar();
+  final CustomBottomAppBar customButtomAppBar = const CustomBottomAppBar();
   String? name;
   String? email;
   String? phoneNumber;
+  String profilePicture = '';
 
   @override
   void initState() {
@@ -31,6 +34,7 @@ class _UserScreenState extends State<UserScreen> {
           name = user.name ?? '';
           email = user.email ?? '';
           phoneNumber = user.phoneNumber ?? '';
+          profilePicture = user.profilePicture ?? '';
         });
       } else {
         //print('Belge mevcut değil');
@@ -40,6 +44,13 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ImageProvider<Object> backgroundImage;
+
+    if (profilePicture != '') {
+      backgroundImage = NetworkImage(profilePicture);
+    } else {
+      backgroundImage = const AssetImage('assets/avatar_image.png');
+    }
     return Scaffold(
       body: Column(
         children: [
@@ -60,14 +71,12 @@ class _UserScreenState extends State<UserScreen> {
                 left: MediaQuery.of(context).size.width * 0.5 -
                     60, // Yatayda ortalanmış pozisyon
                 bottom: 0,
-                child: const CircleAvatar(
-                  radius: 60, // Çemberin yarıçapı
-                  backgroundImage:
-                      AssetImage('assets/avatar_image.png'), // Arkaplan resmi
-                  //backgroundImage: NetworkImage('url'), // İnternetten resim
-                  //backgroundColor: Colors.blue, // Arkaplan rengi
-                  //child: Icon(Icons.person), // İkon kullanımı
-                ),
+                child: CircleAvatar(
+                    radius: 60, // Çemberin yarıçapı
+                    backgroundImage: backgroundImage
+                    // Arkaplan resmi
+
+                    ),
               ),
               Positioned(
                 top: 30,
@@ -102,7 +111,31 @@ class _UserScreenState extends State<UserScreen> {
                 const SizedBox(height: 20),
                 userCard("assets/Phone.png", "Phone no", phoneNumber ?? ''),
                 const SizedBox(height: 20),
-                userCard("assets/Department.png", "Department", "Selim Alpa"),
+                Padding(
+                  padding: const EdgeInsets.only(right: 40),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => const ChangePassword());
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: kCustomGreyColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          userCard("assets/password.png", "Change Password",
+                              "************"),
+                          const Icon(
+                            Icons.chevron_right,
+                            size: 40,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

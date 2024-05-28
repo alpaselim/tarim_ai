@@ -25,6 +25,26 @@ class FireStoreService {
 
   String? userId = FirebaseAuth.instance.currentUser?.uid;
 
+  Future<void> updateFieldName(String fieldId, String newName) async {
+    if (currentUser?.uid != null && fieldId.isNotEmpty) {
+      await FirebaseFirestore.instance
+          .collection('users') // Kullanıcılar koleksiyonuna erişim
+          .doc(currentUser?.uid) // Mevcut kullanıcının ID'si ile belgeye erişim
+          .collection('fields') // Kullanıcının tarlaları için alt koleksiyon
+          .doc(fieldId) // Güncellenecek tarlanın ID'si
+          .update({'fieldName': newName}) // Tarla adını güncelle
+          .then((value) {
+        snackbarService.showSuccessSnackBar("Tarla adı başarıyla güncellendi");
+      }).catchError((error) {
+        snackbarService.showErrorSnackBar(
+            "Tarla adı güncellenirken bir hata oluştu: $error");
+      });
+    } else {
+      snackbarService.showErrorSnackBar(
+          "Kullanıcı bilgisi bulunamadı veya tarla ID'si boş");
+    }
+  }
+
   Future<void> deleteImage(String imageUrl) async {
     try {
       // Firestore'dan galerideki ilgili belgeyi bul
@@ -97,6 +117,7 @@ class FireStoreService {
     }
   }
 
+  //gallery photo upload
   Future<String> uploadGalleryImage(File imageFile) async {
     try {
       String imagePath = 'gallery/${DateTime.now()}.png'; // Yüklenecek yol
@@ -275,6 +296,155 @@ class FireStoreService {
       }
     } catch (e) {
       //print('Kullanıcı adını güncelleme başarısız: $e');
+    }
+  }
+
+  Future<void> deleteUserAccount() async {
+    try {
+      String uid = currentUser!.uid;
+      await _deleteUserData(uid);
+
+      await FirebaseAuth.instance.currentUser!.delete();
+    } on FirebaseAuthException catch (e) {
+      print(e);
+
+      if (e.code == "requires-recent-login") {
+        await _reauthenticateAndDelete();
+      } else {
+        // Handle other Firebase exceptions
+      }
+    } catch (e) {
+      print(e);
+
+      // Handle general exception
+    }
+  }
+
+  //User? currentUser = FirebaseAuth.instance.currentUser;
+  Future<void> _reauthenticateAndDelete() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        AuthCredential? credential;
+
+        // Check the provider ID and get the appropriate credential
+        for (UserInfo userInfo in user.providerData) {
+          if (userInfo.providerId == 'apple.com') {
+            // Apple sign-in is not directly supported for reauthentication on Android
+            // You would need to implement Apple sign-in for Android separately if needed
+          } else if (userInfo.providerId == 'google.com') {
+            // Google Sign-In
+            GoogleAuthProvider googleProvider = GoogleAuthProvider();
+            // Prompt user to re-authenticate using Google Sign-In
+            // You will need to integrate Google Sign-In in your Flutter project
+            // and get the Google Sign-In credentials here
+          } else if (userInfo.providerId == 'password') {
+            // Email and Password
+            String email = user.email!;
+            // You need to prompt the user to enter their password
+            String password =
+                'user-entered-password'; // You should get this from user input
+            credential =
+                EmailAuthProvider.credential(email: email, password: password);
+          }
+        }
+
+        if (credential != null) {
+          await user.reauthenticateWithCredential(credential);
+          await user.delete();
+        }
+      }
+    } catch (e) {
+      // Handle exceptions
+      print("Error: $e");
+    }
+  }
+
+  // DELETE ACCOUNT
+  Future<void> deleteUserAccounnt() async {
+    try {
+      if (currentUser != null) {
+        String uid = currentUser!.uid;
+
+        // Kullanıcı verilerini silme
+        await _deleteUserData(uid);
+
+        // Kullanıcıyı Firebase Authentication'dan silme
+        await currentUser!.delete();
+
+        snackbarService.showSuccessSnackBar("Hesap başarıyla silindi");
+      } else {
+        snackbarService.showErrorSnackBar("Kullanıcı oturumu açılmamış");
+      }
+    } catch (e) {
+      if (e is FirebaseAuthException && e.code == 'requires-recent-login') {
+        snackbarService
+            .showErrorSnackBar("Lütfen tekrar giriş yapın ve tekrar deneyin.");
+        // Yeniden kimlik doğrulama işlemini burada ele alabilirsiniz
+      } else {
+        snackbarService
+            .showErrorSnackBar("Hesap silinirken bir hata oluştu: $e");
+      }
+    }
+  }
+
+  Future<void> _deleteUserData(String uid) async {
+    try {
+      // Kullanıcının gallery koleksiyonunu silme
+      QuerySnapshot gallerySnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .collection('gallery')
+          .get();
+
+      for (var doc in gallerySnapshot.docs) {
+        await doc.reference.delete();
+      }
+
+      // Kullanıcının fields koleksiyonunu silme
+      QuerySnapshot fieldsSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .collection('fields')
+          .get();
+
+      for (var doc in fieldsSnapshot.docs) {
+        await doc.reference.delete();
+      }
+
+      // Kullanıcının ana belgesini silme
+      await FirebaseFirestore.instance.collection('users').doc(uid).delete();
+
+      // Ek olarak başka koleksiyonlarda kullanıcıya ait veriler varsa onları da silebilirsiniz
+
+      snackbarService
+          .showSuccessSnackBar("Kullanıcı verileri başarıyla silindi");
+    } catch (e) {
+      snackbarService.showErrorSnackBar(
+          "Kullanıcı verileri silinirken bir hata oluştu: $e");
+    }
+  }
+
+  Future<String> changePassword(
+      String currentPassword, String newPassword, String email) async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      // Reauthenticate the user.
+      AuthCredential credential = EmailAuthProvider.credential(
+        email: email,
+        password: currentPassword,
+      );
+      await user?.reauthenticateWithCredential(credential);
+
+      // If reauthentication is successful, change the password.
+      await user?.updatePassword(newPassword);
+
+      // Password changed successfully.
+      return 'Password changed successfully.';
+    } catch (e) {
+      // Handle reauthentication errors and password change errors.
+      return 'Error changing password: $e';
     }
   }
 }

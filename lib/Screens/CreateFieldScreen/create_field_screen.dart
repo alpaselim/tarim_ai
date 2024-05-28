@@ -4,6 +4,7 @@ import 'package:tarim_ai/Controllers/location_controller.dart';
 import 'package:tarim_ai/Data/app_constant_env.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Data/models/soil_analysis.dart';
+import 'package:tarim_ai/Screens/HomeScreen/home.dart';
 import 'package:tarim_ai/Screens/HomeScreen/home_screen.dart';
 import 'package:tarim_ai/Services/firestore_service.dart';
 
@@ -83,7 +84,7 @@ class CreateFieldState extends State<CreateField> {
 
               await fireStoreService.addFieldToCurrentUser(soilAnalysis);
 
-              Get.to(() => const HomeScreen());
+              Get.to(() => const Home());
             },
           ),
         ],

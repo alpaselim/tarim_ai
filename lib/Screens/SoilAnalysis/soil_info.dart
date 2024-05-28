@@ -70,42 +70,30 @@ class _SoilInfoState extends State<SoilInfo> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ksoftGreenColor,
-        automaticallyImplyLeading: false,
+        backgroundColor: kGreenColor,
         title: const Text(
           'Soil Info',
           style: TextStyle(
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.bold,
-              color: kBlackColor),
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.bold,
+          ),
         ),
         actions: [
           IconButton(
             icon: const Icon(
               Icons.send,
               size: 30,
-              color: kBlackColor,
             ),
             onPressed: showPrecautions,
           ),
         ],
       ),
-      /* extendBody: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: kGreenColor,
-        foregroundColor: Colors.white,
-        elevation: 5,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.camera_alt),
-      ),
-      bottomNavigationBar: const CustomButtomAppBar(), */
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              const SizedBox(height: 5),
               InfoCard(
                 color: kInfoPageColor,
                 tanim: 'İklim',
@@ -245,7 +233,7 @@ class _SoilInfoState extends State<SoilInfo> {
       title: title,
       desc: content,
       btnOkText: 'Got it',
-      btnOkColor: themeColor,
+      btnOkColor: kThemeColor,
       btnOkOnPress: () {},
     ).show();
   }

@@ -4,16 +4,16 @@ import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Screens/HomeScreen/home_screen.dart';
 import 'package:tarim_ai/Screens/UserScreen/user_screen.dart';
 
-class CustomButtomAppBar extends StatefulWidget {
-  const CustomButtomAppBar({
+class CustomBottomAppBar extends StatefulWidget {
+  const CustomBottomAppBar({
     super.key,
   });
 
   @override
-  State<CustomButtomAppBar> createState() => _CustomButtomAppBarState();
+  State<CustomBottomAppBar> createState() => _CustomBottomAppBarState();
 }
 
-class _CustomButtomAppBarState extends State<CustomButtomAppBar> {
+class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   Color _homeButtonColor = kWhiteColor;
   Color _userButtonColor = kWhiteColor;
   @override
