@@ -17,23 +17,6 @@ class StreamService {
 // Create a CollectionReference called users that references the firestore collection
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-  /*  Stream<List<String>> getImageUrlsStream() {
-    
-    try {
-      // Firestore veritabanından fotoğraf URL'lerini dinamik olarak al
-       String? currentUserUid = FirebaseAuth.instance.currentUser?.uid;
-      return FirebaseFirestore.instance
-          .collection('users')
-          .doc(currentUserUid) // Kullanıcıya göre belirli bir belgeyi hedefle
-          .collection('gallery')
-          .snapshots()
-          .map((snapshot) => snapshot.docs.map((doc) => doc.data()['url'] as String).toList());
-    } catch (e) {
-      print('Error fetching image URLs from Firestore: $e');
-      return Stream.value([]); // Boş bir liste döndürür
-    }
-  } */
-
   Stream<QuerySnapshot<Map<String, dynamic>>> getCurrentUserGallery() {
     return FirebaseFirestore.instance
         .collection('users')

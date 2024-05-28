@@ -42,40 +42,28 @@ class _FieldInfoState extends State<FieldInfo> {
     String productName = fieldController.productName.value ?? "";
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kWhiteColor,
-        automaticallyImplyLeading: false,
+        backgroundColor: kGreenColor,
         title: const Text(
           'Field Info',
           style: TextStyle(
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.bold,
-              color: kBlackColor),
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.bold,
+          ),
         ),
         actions: [
           IconButton(
             icon: const Icon(
               Icons.send,
-              size: 30,
-              color: kBlackColor,
+              //size: 30,
             ),
             onPressed: showPrecautions,
           ),
         ],
       ),
-      /*  extendBody: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: kGreenColor,
-        foregroundColor: kWhiteColor,
-        elevation: 5,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.camera_alt),
-      ),
-      bottomNavigationBar: const CustomButtomAppBar(), */
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          const SizedBox(height: 5),
           InfoCard(
             color: kInfoPageColor,
             tanim: 'Bitki türü',
@@ -179,7 +167,7 @@ class _FieldInfoState extends State<FieldInfo> {
       title: title,
       desc: content,
       btnOkText: 'Got it',
-      btnOkColor: themeColor,
+      btnOkColor: kThemeColor,
       btnOkOnPress: () {},
     ).show();
   }

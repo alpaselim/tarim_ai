@@ -92,7 +92,7 @@ class _MyHomePageState extends State<WeedDetectionPage> {
       title: title,
       desc: content,
       btnOkText: 'Got it',
-      btnOkColor: themeColor,
+      btnOkColor: kThemeColor,
       btnOkOnPress: () {},
     ).show();
   }
@@ -108,19 +108,19 @@ class _MyHomePageState extends State<WeedDetectionPage> {
               Container(
                 height: MediaQuery.of(context).size.height * 0.23,
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
                     // Top right corner
                     bottomLeft: Radius.circular(50.0), // Bottom right corner
                   ),
-                  color: themeColor,
+                  color: kThemeColor,
                 ),
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.2,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: ksoftGreenColor,
                   borderRadius: const BorderRadius.only(
                     // Top right corner
                     bottomLeft: Radius.circular(50.0), // Bottom right corner
@@ -146,19 +146,19 @@ class _MyHomePageState extends State<WeedDetectionPage> {
                         _pickImage(ImageSource.gallery);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: themeColor,
+                        backgroundColor: kGreenColor,
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
                             'OPEN GALLERY',
-                            style: TextStyle(color: textColor),
+                            style: TextStyle(color: kWhiteColor),
                           ),
-                          const SizedBox(width: 10),
+                          SizedBox(width: 10),
                           Icon(
                             Icons.image,
-                            color: textColor,
+                            color: kWhiteColor,
                           )
                         ],
                       ),
@@ -168,15 +168,15 @@ class _MyHomePageState extends State<WeedDetectionPage> {
                         _pickImage(ImageSource.camera);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: themeColor,
+                        backgroundColor: kGreenColor,
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text('START CAMERA',
-                              style: TextStyle(color: textColor)),
-                          const SizedBox(width: 10),
-                          Icon(Icons.camera_alt, color: textColor)
+                              style: TextStyle(color: kWhiteColor)),
+                          SizedBox(width: 10),
+                          Icon(Icons.camera_alt, color: kWhiteColor)
                         ],
                       ),
                     ),
@@ -207,8 +207,8 @@ class _MyHomePageState extends State<WeedDetectionPage> {
                 ),
           if (_selectedImage != null)
             detecting
-                ? SpinKitWave(
-                    color: themeColor,
+                ? const SpinKitWave(
+                    color: kThemeColor,
                     size: 30,
                   )
                 : Container(
@@ -217,7 +217,7 @@ class _MyHomePageState extends State<WeedDetectionPage> {
                         const EdgeInsets.only(bottom: 60, left: 20, right: 20),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: themeColor,
+                        backgroundColor: kThemeColor,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 30, vertical: 15),
                         // Set some horizontal and vertical padding
@@ -283,10 +283,10 @@ class _MyHomePageState extends State<WeedDetectionPage> {
                         onPressed: () {
                           showPrecautions();
                         },
-                        child: Text(
+                        child: const Text(
                           'PRECAUTION',
                           style: TextStyle(
-                            color: textColor,
+                            color: kWhiteColor,
                           ),
                         ),
                       ),

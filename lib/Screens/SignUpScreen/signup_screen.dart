@@ -180,7 +180,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Navigator.pushNamed(
                 // ignore: use_build_context_synchronously
                 context,
-                homeScreenPath,
+                homePath,
               );
             }
           }
@@ -190,7 +190,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           width: 248,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(28.5),
-            color: kSplashBackgroundColor,
+            color: kGreenColor,
           ),
           child: const Center(
             child: Text("SIGN UP",

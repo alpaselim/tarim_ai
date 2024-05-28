@@ -180,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
           width: 248,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(28.5),
-            color: kSplashBackgroundColor,
+            color: kGreenColor,
           ),
           child: const Center(
             child: Text("LOGIN",

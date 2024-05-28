@@ -48,16 +48,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      /* floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: kGreenColor,
-        foregroundColor: Colors.white,
-        elevation: 5,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.camera_alt),
-      ),
-      bottomNavigationBar: const CustomButtomAppBar(), */
       drawer: const DrawerWidget(),
       body: Column(
         children: [
@@ -142,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Obx(() {
       // Use the controller's selectedFieldName to display the name
       String buttonText =
-          fieldController.selectedFieldName.value ?? 'Select a Field';
+          fieldController.selectedFieldName.value ?? 'Select Field';
       return TextButton(
         onPressed: () {
           Get.to(() => const SelectedField());
@@ -168,14 +158,28 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Row(
           children: [
             Expanded(
-                child: Text(
-              buttonText,
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 17,
+              child: Text(
+                buttonText,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 17,
+                ),
               ),
-            )),
-            const Icon(Icons.chevron_right), // No need for GestureDetector here
+            ),
+            GestureDetector(
+              child: Container(
+                width: 25, // Circle's width
+                height: 25, // Circle's height
+                decoration: const BoxDecoration(
+                  color: kGreenColor, // Circle's background color
+                  shape: BoxShape.circle, // Makes the container a circle
+                ),
+                child: const Icon(Icons.chevron_right),
+              ),
+              onTap: () {
+                Get.to(() => const SelectedField());
+              },
+            ), // No need for GestureDetector here
           ],
         ),
       );

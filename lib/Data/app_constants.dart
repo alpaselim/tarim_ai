@@ -8,6 +8,7 @@ const kBlackColor = Colors.black;
 const kBlueColor = Color(0xFF2372CF);
 const kOrangeColor = Colors.orange;
 const kOrangeLightColor = Color(0xffFE9F83);
+const kLightOrangeColor = Color.fromARGB(255, 238, 207, 198);
 const kGreenLightColor = Color(0xFFc0ff3e);
 const kRedColor = Colors.red;
 const kGreenColor = Color.fromARGB(255, 68, 102, 70);
@@ -21,13 +22,12 @@ const kturkuazColor = Color(0xFFE3F3F0);
 const ksoftGreenColor = Color.fromARGB(255, 237, 241, 232);
 const kSmallCardColor = Color.fromARGB(255, 239, 255, 219);
 const kLargeCardColor = Color.fromARGB(255, 246, 255, 200);
-const kInfoPageColor = Color.fromARGB(255, 209, 241, 231);
+const kInfoPageColor = Color.fromARGB(255, 174, 211, 199);
 const kBoldGreenColor = Color.fromARGB(255, 42, 92, 75);
 const kMojitoBreezeColor = Color.fromARGB(255, 251, 255, 244);
 const kCustomGreyColor = Color.fromARGB(255, 217, 217, 217);
+const kThemeColor = Color.fromARGB(255, 68, 102, 70);
 
-Color themeColor = const Color(0xFF5bc787);
-Color textColor = Colors.white;
 ThemeData appTheme = ThemeData(
   scaffoldBackgroundColor: ksoftGreenColor,
   appBarTheme: const AppBarTheme(

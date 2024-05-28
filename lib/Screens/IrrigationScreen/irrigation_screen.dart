@@ -25,7 +25,7 @@ class _IrrigationScreenState extends State<IrrigationScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kGreenColor,
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
         title: const Text(
           'Irrigation Assistant',
           style: TextStyle(
@@ -52,6 +52,119 @@ class _IrrigationScreenState extends State<IrrigationScreen> {
             TextButton(
               onPressed: () {
                 showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Center(
+                        child: Text(
+                          'Add Plant',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      content: TextFormField(
+                        controller: productNameController,
+                        autofocus: true,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter product name',
+                          border: UnderlineInputBorder(),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
+                        ),
+                      ),
+                      actions: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width *
+                                    0.30, // Genişlik ayarı
+                                height: 40, // Yükseklik ayarı
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromARGB(255, 133, 134, 136),
+                                  //  kGreyColor,
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Cancel',
+                                      style: TextStyle(color: kWhiteColor)),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width *
+                                    0.30, // Genişlik ayarı
+                                height: 40, // Yükseklik ayarı
+                                decoration: BoxDecoration(
+                                  color: kGreenColor,
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: TextButton(
+                                  onPressed: () {
+                                    String productName =
+                                        productNameController.text;
+                                    // FieldController'a erişim ve productName'i güncelleme
+                                    FieldController fieldController =
+                                        Get.find<FieldController>();
+                                    fieldController.setProduct(productName);
+                                    Get.to(() => const FieldInfo());
+                                  },
+                                  child: const Text('Add',
+                                      style: TextStyle(color: kWhiteColor)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: kGreyColor, width: 4),
+                        // Dialog şeklini belirle
+                        borderRadius: BorderRadius.circular(
+                            30), // Kenar yuvarlaklığını ayarla
+                      ),
+                    );
+                  },
+                );
+              },
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all<Color>(kGreenColor),
+                minimumSize: WidgetStateProperty.all<Size>(const Size(250, 50)),
+                padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+                    const EdgeInsets.all(10)),
+              ),
+              child: const Text(
+                'ADD PLANT',
+                style: TextStyle(fontSize: 18, color: kWhiteColor),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+/* showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
@@ -86,22 +199,4 @@ class _IrrigationScreenState extends State<IrrigationScreen> {
                       ],
                     );
                   },
-                );
-              },
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all<Color>(kGreenColor),
-                minimumSize: WidgetStateProperty.all<Size>(const Size(250, 50)),
-                padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
-                    const EdgeInsets.all(10)),
-              ),
-              child: const Text(
-                'ADD PLANT',
-                style: TextStyle(fontSize: 18, color: kWhiteColor),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+                ); */

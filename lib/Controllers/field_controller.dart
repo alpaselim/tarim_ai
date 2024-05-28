@@ -23,6 +23,10 @@ class FieldController extends GetxController {
     productName.value = product;
   }
 
+  void updateFieldName(String? newName) {
+    selectedFieldName.value = newName;
+  }
+
   void clearSelection() {
     selectedFieldId.value = null;
     selectedFieldName.value = null;

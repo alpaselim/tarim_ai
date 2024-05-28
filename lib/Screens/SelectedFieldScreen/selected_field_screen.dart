@@ -23,7 +23,7 @@ class _SelectedFieldState extends State<SelectedField> {
       appBar: AppBar(
         backgroundColor: kGreenColor,
         title: const Text(
-          'Select a Field',
+          'Select Field',
           style: TextStyle(
             fontFamily: 'Poppins',
             fontWeight: FontWeight.bold,

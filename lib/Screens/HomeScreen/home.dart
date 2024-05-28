@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Screens/GalleryScreen/gallery_screen.dart';
 import 'package:tarim_ai/Screens/HomeScreen/home_screen.dart';
@@ -15,6 +18,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final FieldController fieldController = Get.find<FieldController>();
   int currentTab = 0;
   final List<Widget> screens = [const HomeScreen(), const UserScreen()];
   final PageStorageBucket bucket = PageStorageBucket();
@@ -103,7 +107,7 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.photo_library,
+                        Icons.image,
                         color: currentTab == 2 ? kWhiteColor : kGreyColor,
                       )
                     ],
@@ -150,9 +154,18 @@ class _HomeState extends State<Home> {
       setState(() {
         _selectedImage = File(pickedFile.path);
       });
+
+      // Save image to Firestore
       String imageUrl =
           await fireStoreService.uploadGalleryImage(_selectedImage!);
       fireStoreService.addImageUrlToFirestore(imageUrl);
+
+      // Use the selected field name as album name
+      String albumName =
+          fieldController.selectedFieldName.value ?? 'YourAppAlbumName';
+
+      // Save image to gallery with the selected field name as album name
+      await GallerySaver.saveImage(_selectedImage!.path, albumName: albumName);
     }
   }
 }
