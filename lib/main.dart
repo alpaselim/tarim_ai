@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       title: 'Stock App',
       theme: appTheme,
       getPages: getPages,
-      initialRoute: homePath,
+      initialRoute: splashScreenPath,
     );
   }
 }

@@ -134,12 +134,14 @@ class _ListFieldsState extends State<ListFields> {
             autofocus: true,
             decoration: const InputDecoration(
               hintText: 'Enter field name',
-              border: UnderlineInputBorder(),
+              border: UnderlineInputBorder(
+                borderSide: BorderSide(color: kGreenColor),
+              ),
               enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
+                borderSide: BorderSide(color: kGreyColor),
               ),
               focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue),
+                borderSide: BorderSide(color: kGreenColor),
               ),
             ),
           ),

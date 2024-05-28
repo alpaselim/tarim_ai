@@ -71,10 +71,10 @@ class _IrrigationScreenState extends State<IrrigationScreen> {
                           hintText: 'Enter product name',
                           border: UnderlineInputBorder(),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
+                            borderSide: BorderSide(color: kGreyColor),
                           ),
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue),
+                            borderSide: BorderSide(color: kGreenColor),
                           ),
                         ),
                       ),
