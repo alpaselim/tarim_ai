@@ -1,8 +1,11 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tarim_ai/Controllers/field_controller.dart';
 import 'package:tarim_ai/Data/app_constants.dart';
 import 'package:tarim_ai/Screens/CreateFieldScreen/list_fields_screen.dart';
+import 'package:tarim_ai/Screens/Dashboard/dashboard_screen.dart';
 import 'package:tarim_ai/Screens/InsectDetectionScreen/insect_detection_screen.dart';
 import 'package:tarim_ai/Screens/IrrigationScreen/irrigation_screen.dart';
 import 'package:tarim_ai/Screens/SelectedFieldScreen/selected_field_screen.dart';
@@ -44,7 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(
               Icons.info_rounded,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => const DashboardScreen());
+            },
           ),
         ],
       ),
@@ -72,10 +77,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8),
             child: SmallWeatherApp(),
           ),
-          Expanded(
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: buildCardGrid(),
           ),
         ],
@@ -93,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               'Kullanıcı Adı',
               style: TextStyle(
-                color: Colors.white,
+                color: kWhiteColor,
                 fontSize: 24,
               ),
             ),
@@ -189,90 +195,96 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildCardGrid() {
     // Tasarıma uygun olarak kartları oluşturur
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      //mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Expanded(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MyCard(
-                  height: 110,
-                  color: kSmallCardColor,
-                  imageAsset: 'assets/saat.png',
-                  title: 'SOIL ANALYSIS',
-                  onTap: () {
-                    Get.to(() => const SoilInfo());
-                  },
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * .50,
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: MyCard(
+                    //  height: 110,
+                    color: kSmallCardColor,
+                    imageAsset: 'assets/saat.png',
+                    title: 'SOIL ANALYSIS',
+                    onTap: () {
+                      Get.to(() => const SoilInfo());
+                    },
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MyCard(
-                  height: 160,
-                  color: kLargeCardColor,
-                  imageAsset: 'assets/weed.png',
-                  title: 'WEED DETECTION',
-                  onTap: () {
-                    Get.to(() => const WeedDetectionPage());
-                  },
+                Expanded(
+                  flex: 3,
+                  child: MyCard(
+                    // height: 160,
+                    color: kLargeCardColor,
+                    imageAsset: 'assets/weed.png',
+                    title: 'WEED DETECTION',
+                    onTap: () {
+                      Get.to(() => const WeedDetectionPage());
+                    },
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MyCard(
-                  height: 130,
-                  color: kSmallCardColor,
-                  imageAsset: 'assets/marketing.png',
-                  title: 'MARKETING',
-                  onTap: () {
-                    Get.to(() => const WeedDetectionPage());
-                  },
+                Expanded(
+                  flex: 2,
+                  child: MyCard(
+                    // height: 130,
+                    color: kSmallCardColor,
+                    imageAsset: 'assets/marketing.png',
+                    title: 'MARKETING',
+                    onTap: () {
+                      Get.to(() => const WeedDetectionPage());
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         Expanded(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MyCard(
-                  height: 140,
-                  color: kLargeCardColor,
-                  imageAsset: 'assets/beetle.png',
-                  title: 'INSECT DETECTION',
-                  onTap: () {
-                    Get.to(() => const InsectDetectionPage());
-                  },
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * .50,
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: MyCard(
+                    //height: 140,
+                    color: kLargeCardColor,
+                    imageAsset: 'assets/beetle.png',
+                    title: 'INSECT DETECTION',
+                    onTap: () {
+                      Get.to(() => const InsectDetectionPage());
+                    },
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MyCard(
-                  height: 110,
-                  color: kSmallCardColor,
-                  imageAsset: 'assets/watering.png',
-                  title: 'IRRIGATION',
-                  onTap: () {
-                    Get.to(() => const IrrigationScreen());
-                  },
+                Expanded(
+                  flex: 3,
+                  child: MyCard(
+                    //height: 110,
+                    color: kSmallCardColor,
+                    imageAsset: 'assets/watering.png',
+                    title: 'IRRIGATION',
+                    onTap: () {
+                      Get.to(() => const IrrigationScreen());
+                    },
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MyCard(
-                  height: 150,
-                  color: kLargeCardColor,
-                  imageAsset: 'assets/carbon_footprint.png',
-                  title: 'CARBON FOOTPRINT',
-                  onTap: () {
-                    Get.to(() => const WeedDetectionPage());
-                  },
+                Expanded(
+                  flex: 4,
+                  child: MyCard(
+                    // height: 150,
+                    color: kLargeCardColor,
+                    imageAsset: 'assets/carbon_footprint.png',
+                    title: 'CARBON FOOTPRINT',
+                    onTap: () {
+                      Get.to(() => const WeedDetectionPage());
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
@@ -281,7 +293,6 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class MyCard extends StatelessWidget {
-  final double height;
   final Color color;
   final String imageAsset;
   final String title;
@@ -289,7 +300,6 @@ class MyCard extends StatelessWidget {
 
   const MyCard(
       {Key? key,
-      required this.height,
       required this.color,
       required this.imageAsset,
       required this.title,
@@ -307,7 +317,6 @@ class MyCard extends StatelessWidget {
               25), // Kenarları oval yapar, istediğiniz yuvarlaklık derecesini buradan ayarlayabilirsiniz
         ),
         child: SizedBox(
-          height: height,
           width: MediaQuery.of(context).size.width * 0.6,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -101,7 +101,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   Widget buildMenuItems(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(14),
       child: Wrap(
         runSpacing: 16,
         children: [

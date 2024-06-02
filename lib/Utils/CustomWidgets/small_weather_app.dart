@@ -23,7 +23,8 @@ class _SmallWeatherAppState extends State<SmallWeatherApp> {
       children: [
         Container(
           width: double.infinity, // Container'ı tam genişlikte ayarla
-          height: 175.0, // Sabit yükseklik belirle
+          height: MediaQuery.of(context).size.height *
+              0.21, // Sabit yükseklik belirle
           decoration: const BoxDecoration(
             color: Color.fromARGB(255, 202, 218, 215),
             borderRadius: BorderRadius.all(Radius.circular(25)),
@@ -38,7 +39,7 @@ class _SmallWeatherAppState extends State<SmallWeatherApp> {
                   ? SizedBox(
                       // Sabit boyutu korumak için bu containerı kullan
                       width: double.infinity,
-                      height: 150.0,
+                      height: MediaQuery.of(context).size.height * 0.21,
                       child: newMethod(
                           controller), // Yükleme tamamlandığında içeriği göster
                     )

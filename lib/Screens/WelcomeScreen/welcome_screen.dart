@@ -98,8 +98,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           CustomWelcomeButton(
             text: 'Start with Email',
             onPressed: () {
-              // On click: Navigate to "Phone Registration"
-              Navigator.pushNamed(context, '/email_reg');
+              functions.setIsFirstTime();
+              Navigator.pushNamed(context, loginScreenPath);
             },
           ),
           ElevatedButton(
