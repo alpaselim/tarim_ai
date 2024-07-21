@@ -49,17 +49,11 @@ class _ListFieldsState extends State<ListFields> {
               final field = fields[index];
               return Card(
                 margin: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
+                child: InkWell(
+                  onTap: () {
                     controller.text = field.fieldName ?? "";
                     showDialogMethod(context, snapshot, index);
                   },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(10.0), // Dairenin yarı çapı
-                    ),
-                  ),
                   child: ListTile(
                     leading: const CircleAvatar(
                       backgroundColor: klightGreenColor,

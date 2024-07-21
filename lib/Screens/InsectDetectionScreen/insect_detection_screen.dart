@@ -121,18 +121,8 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      /* floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: kGreenColor,
-        foregroundColor: Colors.white,
-        elevation: 5,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.camera_alt),
-      ),
-      bottomNavigationBar: const CustomButtomAppBar(), */
       body: Column(
-        children: <Widget>[
+        children: [
           const SizedBox(height: 20),
           Stack(
             children: [
@@ -171,7 +161,7 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
+                  children: [
                     ElevatedButton(
                       onPressed: () {
                         _pickImage(ImageSource.gallery);
@@ -240,7 +230,7 @@ class _InsectDetectionPageState extends State<InsectDetectionPage> {
                 ),
           if (_selectedImage != null)
             detecting
-                ? const SpinKitWave(
+                ? const SpinKitPouringHourGlass(
                     color: kThemeColor,
                     size: 30,
                   )

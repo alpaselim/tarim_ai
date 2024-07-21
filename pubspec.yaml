@@ -62,6 +62,7 @@ dependencies:
   #fotograflari cihaz galerisine kaydetmek icin
   path_provider: ^2.0.11
   gallery_saver: ^2.3.2
+  camera: ^0.11.0+1
   
   
   
