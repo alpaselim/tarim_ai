@@ -48,14 +48,12 @@ class AppService {
 
   Future<Map<String, dynamic>> sendRequestForWeed(String weedName) async {
     const String apiURL = 'https://api.openai.com/v1/chat/completions';
-    const String apiKey =
-        "sk-proj-gB6D4Pk2yBOtFH6BWlnQT3BlbkFJ5NL71otjMo0AWeSXexJR";
 
     final response = await http.post(
       Uri.parse(apiURL),
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
-        'Authorization': 'Bearer $apiKey',
+        'Authorization': 'Bearer $API_KEY',
       },
       body: jsonEncode({
         'model': 'ft:gpt-3.5-turbo-0125:personal:weed-detect:94FFQf3c',
@@ -81,14 +79,12 @@ class AppService {
 
   Future<Map<String, dynamic>> sendRequestForInsect(String insectName) async {
     const String apiURL = 'https://api.openai.com/v1/chat/completions';
-    const String apiKey =
-        "sk-proj-gB6D4Pk2yBOtFH6BWlnQT3BlbkFJ5NL71otjMo0AWeSXexJR";
 
     final response = await http.post(
       Uri.parse(apiURL),
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
-        'Authorization': 'Bearer $apiKey',
+        'Authorization': 'Bearer $API_KEY',
       },
       body: jsonEncode({
         'model': 'ft:gpt-3.5-turbo-0125:personal:insect-detection:9CmOwzMh',
@@ -115,14 +111,12 @@ class AppService {
   Future<Map<String, dynamic>> sendRequestForIrrigation(
       String fieldInfo) async {
     const String apiURL = 'https://api.openai.com/v1/chat/completions';
-    const String apiKey =
-        "sk-proj-gB6D4Pk2yBOtFH6BWlnQT3BlbkFJ5NL71otjMo0AWeSXexJR";
 
     final response = await http.post(
       Uri.parse(apiURL),
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
-        'Authorization': 'Bearer $apiKey',
+        'Authorization': 'Bearer $API_KEY',
       },
       body: jsonEncode({
         'model': 'ft:gpt-3.5-turbo-0125:personal:irrigation-helper:9CeYdpvh',
@@ -149,14 +143,12 @@ class AppService {
   Future<Map<String, dynamic>> sendRequestForSoilAnalysis(
       String soilInfo) async {
     const String apiURL = 'https://api.openai.com/v1/chat/completions';
-    const String apiKey =
-        "sk-proj-gB6D4Pk2yBOtFH6BWlnQT3BlbkFJ5NL71otjMo0AWeSXexJR";
 
     final response = await http.post(
       Uri.parse(apiURL),
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
-        'Authorization': 'Bearer $apiKey',
+        'Authorization': 'Bearer $API_KEY',
       },
       body: jsonEncode({
         'model': 'ft:gpt-3.5-turbo-0125:personal:soil-analysis:9ClA0U9v',

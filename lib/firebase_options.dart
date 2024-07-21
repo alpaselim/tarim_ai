@@ -44,8 +44,8 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCCXvgEhelIKP_pYidy81-y4G87FpUbol0',
-    appId: '1:894652240333:web:01f63b0a3fb6f8b4c13484',
+    apiKey: '******************************',
+    appId: '*****************************',
     messagingSenderId: '894652240333',
     projectId: 'tarim-ai',
     authDomain: 'tarim-ai.firebaseapp.com',
@@ -54,16 +54,16 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDWHDBrPesRNxTXc7Y5bhtPqlljrF6dGl4',
-    appId: '1:894652240333:android:a5c22ff3ec8b270bc13484',
+    apiKey: '*******************************',
+    appId: '***********************************',
     messagingSenderId: '894652240333',
     projectId: 'tarim-ai',
     storageBucket: 'tarim-ai.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAHXRoHB11SQWaESOoi0B1wW5g_w3Q9tj4',
-    appId: '1:894652240333:ios:70a93d204478a97dc13484',
+    apiKey: '*****************************************',
+    appId: '********************************************',
     messagingSenderId: '894652240333',
     projectId: 'tarim-ai',
     storageBucket: 'tarim-ai.appspot.com',
@@ -71,8 +71,8 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAHXRoHB11SQWaESOoi0B1wW5g_w3Q9tj4',
-    appId: '1:894652240333:ios:78eff636e56dcd58c13484',
+    apiKey: '************************************************',
+    appId: '*******************************************************',
     messagingSenderId: '894652240333',
     projectId: 'tarim-ai',
     storageBucket: 'tarim-ai.appspot.com',
